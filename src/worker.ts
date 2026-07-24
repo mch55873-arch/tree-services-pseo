@@ -1,6 +1,6 @@
 import database from "../data/usa_database.json";
 import services from "../data/services.json";
-import { cityPage, localServicePage, notFoundPage, statePage } from "./locationTemplates";
+import { cityPage, localServicePage, notFoundPage, statePage, staticPage } from "./locationTemplates";
 import { coreSitemap, sitemapIndex, stateSitemap, type StateItem } from "./sitemaps";
 import { SITE } from "../lib/site";
 
@@ -58,6 +58,37 @@ async function cached(request: Request, ctx: Ctx, render: () => Response) {
   return result;
 }
 
+const STATIC_PAGES: Record<string, { title: string; html: string }> = {
+  "/about/": {
+    title: "About Us",
+    html: `<h2>About ${SITE.name}</h2><p>${SITE.name} is an independent certified arborist information and tree service referral network serving communities across all 50 states. We connect property owners with independent, qualified local tree removal specialists, stump grinding technicians, and certified arborists.</p>`,
+  },
+  "/contact/": {
+    title: "Contact Us",
+    html: `<h2>Contact Referral Dispatch</h2><p>For immediate emergency tree removal or service inquiries, call our 24/7 arborist hotline at <strong>${SITE.phoneDisplay}</strong>.</p>`,
+  },
+  "/privacy-policy/": {
+    title: "Privacy Policy",
+    html: `<h2>Privacy Policy</h2><p>Your privacy is important to us. Information collected through phone inquiries or form submissions is strictly utilized to connect property owners with independent local tree service providers. We do not sell or lease personal data to unauthorized third parties.</p>`,
+  },
+  "/terms/": {
+    title: "Terms of Use",
+    html: `<h2>Terms of Use</h2><p>By using ${SITE.name}, you acknowledge that this website operates as an informational directory and referral service. All service contractors are independent businesses responsible for their own licensing, insurance, and performance.</p>`,
+  },
+  "/disclaimer/": {
+    title: "Legal Disclaimer",
+    html: `<h2>Legal Disclaimer</h2><p>The information on this website is for educational and promotional purposes. Property owners should verify contractor credentials, licensing, insurance coverage, and written estimates prior to authorizing heavy tree removal work.</p>`,
+  },
+  "/provider-disclosure/": {
+    title: "Independent Provider Disclosure",
+    html: `<h2>Provider Disclosure</h2><p>Providers listed or referred through ${SITE.name} operate independently. ${SITE.name} does not directly employ contractors or perform tree removal services. Always request proof of liability insurance and workers' compensation.</p>`,
+  },
+  "/accessibility/": {
+    title: "Accessibility Statement",
+    html: `<h2>Web Accessibility Statement</h2><p>${SITE.name} is committed to digital accessibility compliant with WCAG 2.1 AA standards. If you encounter any accessibility issues, please contact us for immediate assistance.</p>`,
+  },
+};
+
 export default {
   async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
     if (!["GET", "HEAD"].includes(request.method)) return new Response("Method Not Allowed", { status: 405 });
@@ -95,6 +126,12 @@ export default {
         const sitemap = stateSitemap(state, Number(sitemapMatch[2]), method);
         if (!sitemap) return new Response("Not Found", { status: 404, headers: { "content-type": "text/plain; charset=utf-8" } });
         return cached(request, ctx, () => sitemap);
+      }
+
+      const staticInfo = STATIC_PAGES[path] || (path.endsWith("/") ? null : STATIC_PAGES[`${path}/`]);
+      if (staticInfo) {
+        if (!path.endsWith("/")) return redirect(`https://${DOMAIN}${path}/`);
+        return cached(request, ctx, () => htmlResponse(staticPage(staticInfo.title, path, staticInfo.html), method));
       }
 
       return env.ASSETS.fetch(request);
