@@ -1,0 +1,93 @@
+[
+  {
+    "slug": "how-to-tell-if-tree-is-dangerous-leaning",
+    "title": "How to Tell If a Tree Is Dangerous and Likely to Fall",
+    "category": "Safety & Inspection",
+    "summary": "Learn the vital warning signs of a hazardous tree, including leaning trunks, soil heaving, hollow bark, and dead canopy branches.",
+    "directAnswer": "A dangerous tree often shows sudden lean changes, cracked or peeling bark, hollow trunk sections, mushrooms at the base, or dead branches in the upper canopy. If soil is lifting near the roots or large limbs overhang your roof, contact a certified arborist for an emergency risk evaluation immediately.",
+    "warningSigns": [
+      "Sudden lean or ground heaving around the root plate",
+      "Large cracks or splits running down the main trunk",
+      "Cavities, hollow trunks, or fungal mushroom growth near the base",
+      "Major deadwood, missing bark, or decay on main scaffold limbs",
+      "Overhanging heavy branches above rooflines or power cables"
+    ],
+    "commonCauses": [
+      "Root rot caused by poor soil drainage or fungal decay",
+      "Structural damage from high winds, ice, or lightning strikes",
+      "Excavation damage to shallow anchor roots during construction",
+      "Insect infestation from wood borers or bark beetles",
+      "Age-related structural decline and wood decay"
+    ],
+    "professionalChecks": [
+      "Perform a full 360-degree visual tree risk assessment",
+      "Test trunk sound and internal wood density using resistograph tools",
+      "Evaluate soil heaving, root plate stability, and anchoring strength",
+      "Recommend targeted pruning, cabling, or complete emergency tree removal"
+    ],
+    "prevention": [
+      "Schedule annual arborist inspections for mature canopy trees",
+      "Prune hazardous branches before heavy winter storms",
+      "Avoid trenching or parking heavy machinery over tree root zones"
+    ],
+    "serviceSlugs": ["hazardous-tree-assessment", "tree-removal", "arborist-inspection", "tree-cabling-bracing"]
+  },
+  {
+    "slug": "emergency-tree-removal-after-storm",
+    "title": "Emergency Tree Removal After Storm Damage: First Steps & Safety",
+    "category": "Emergency Care",
+    "summary": "What to do when a tree or heavy limb falls on your home, driveway, or power lines during high winds or severe storms.",
+    "directAnswer": "When a tree falls on your property, immediately ensure family safety, stay clear of downed power lines, take photos for insurance claims, and call an emergency 24/7 tree removal service. Never attempt to cut storm-damaged trees under tension yourself.",
+    "warningSigns": [
+      "Tree resting on roofs, gutters, vehicles, or power lines",
+      "Cracked, hanging limbs suspended high in the canopy ('widowmakers')",
+      "Uprooted root balls pulling up driveways or utility pipes",
+      "Sparks, smoke, or buzzing near fallen branches on utility lines"
+    ],
+    "commonCauses": [
+      "Saturated soil combined with high wind gusts",
+      "Heavy snow or ice loading on brittle tree limbs",
+      "Pre-existing internal trunk rot or root decay",
+      "Shallow root systems in top-heavy shade trees"
+    ],
+    "professionalChecks": [
+      "Stabilize fallen trees with heavy crane rigging before cutting",
+      "Coordinate with local power companies for safe line clearing",
+      "Remove weight safely to prevent further roof or structural damage",
+      "Provide detailed documentation for homeowner insurance claims"
+    ],
+    "prevention": [
+      "Thin heavy tree crowns before storm season to reduce wind sail effect",
+      "Remove dead trees and weak limbs near house structures",
+      "Install steel cabling on multi-stemmed mature trees"
+    ],
+    "serviceSlugs": ["storm-damage-cleanup", "tree-removal", "crown-reduction-thinning"]
+  },
+  {
+    "slug": "stump-grinding-vs-stump-removal",
+    "title": "Stump Grinding vs Stump Removal: Which Is Best for Your Yard?",
+    "category": "Stump Services",
+    "summary": "Compare stump grinding against full root extraction to decide the right option for replanting, landscaping, or lawn care.",
+    "directAnswer": "Stump grinding grinds the tree stump 6 to 12 inches below ground into mulch, leaving deep roots to decay naturally. Full stump removal extracts the entire root ball using heavy excavators. Grinding is cheaper, faster, and causes minimal lawn disruption.",
+    "warningSigns": [
+      "Stumps attracting termites, carpenter ants, or fungal decay",
+      "Hazardous stumps causing lawn mower damage or tripping hazards",
+      "Suckers and new shoots sprouting repeatedly from old stumps"
+    ],
+    "commonCauses": [
+      "Leftover stumps after past tree removal projects",
+      "Desire to replant grass, build patios, or install fencing",
+      "Pest infestations spreading from rotting stumps to nearby trees"
+    ],
+    "professionalChecks": [
+      "Locate underground gas, water, and electrical utility lines before grinding",
+      "Determine grind depth based on future landscaping plans",
+      "Offer root-grinding extensions and wood chip haul-away services"
+    ],
+    "prevention": [
+      "Grind stumps immediately after tree removal to prevent pest breeding",
+      "Backfill stump holes with topsoil and grass seed to prevent settling"
+    ],
+    "serviceSlugs": ["stump-grinding", "tree-removal", "wood-chipping-mulching"]
+  }
+]

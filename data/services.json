@@ -1,0 +1,137 @@
+[
+  {
+    "slug": "tree-removal",
+    "name": "Emergency & Standard Tree Removal",
+    "icon": "🪓",
+    "category": "Removal",
+    "tier": "core",
+    "isCore": true,
+    "description": "Safe, professional tree removal for dead, hazardous, leaning, or storm-damaged trees using specialized rigging and cranes."
+  },
+  {
+    "slug": "tree-trimming",
+    "name": "Tree Trimming & Structural Pruning",
+    "icon": "✂️",
+    "category": "Maintenance",
+    "tier": "core",
+    "isCore": true,
+    "description": "Enhance tree structure, health, and property safety with crown trimming, deadwood removal, and aesthetic shaping."
+  },
+  {
+    "slug": "stump-grinding",
+    "name": "Stump Grinding & Root Removal",
+    "icon": "⚙️",
+    "category": "Removal",
+    "tier": "core",
+    "isCore": true,
+    "description": "Eliminate hazardous tree stumps and sub-surface roots with high-powered hydraulic stump grinding equipment."
+  },
+  {
+    "slug": "arborist-inspection",
+    "name": "Certified Arborist Health & Risk Assessment",
+    "icon": "📋",
+    "category": "Inspection",
+    "tier": "core",
+    "isCore": true,
+    "description": "Comprehensive tree health evaluation, disease diagnosis, pest inspection, and structural risk assessment by certified arborists."
+  },
+  {
+    "slug": "tree-cabling-bracing",
+    "name": "Tree Cabling & Structural Bracing",
+    "icon": "⛓️",
+    "category": "Structural Support",
+    "tier": "core",
+    "isCore": true,
+    "description": "Install flexible steel cables and rigid brace rods to support weak V-shaped crotches and heavy leaning limbs."
+  },
+  {
+    "slug": "palm-tree-service",
+    "name": "Palm Tree Trimming & Skinning",
+    "icon": "🌴",
+    "category": "Specialized",
+    "tier": "core",
+    "isCore": true,
+    "description": "Professional palm frond trimming, seed pod removal, trunk skinning, and palm disease treatment."
+  },
+  {
+    "slug": "storm-damage-cleanup",
+    "name": "Emergency Storm Damage Tree Cleanup",
+    "icon": "⛈️",
+    "category": "Emergency",
+    "tier": "core",
+    "isCore": true,
+    "description": "24/7 rapid response for fallen trees on roofs, power lines, driveways, and storm-damaged property clearance."
+  },
+  {
+    "slug": "lot-land-clearing",
+    "name": "Residential & Commercial Lot Clearing",
+    "icon": "🚜",
+    "category": "Land Prep",
+    "tier": "core",
+    "isCore": true,
+    "description": "Complete land clearing, brush grubbing, tree removal, and site preparation for new construction and developments."
+  },
+  {
+    "slug": "tree-disease-treatment",
+    "name": "Tree Disease & Insect Pest Treatment",
+    "icon": "🧪",
+    "category": "Health",
+    "tier": "core",
+    "isCore": true,
+    "description": "Targeted trunk injections, soil drenching, and foliage sprays to treat fungal infections, borer beetles, and blight."
+  },
+  {
+    "slug": "root-pruning-barriers",
+    "name": "Root Pruning & Bio-Barrier Installation",
+    "icon": "🛡️",
+    "category": "Property Protection",
+    "tier": "core",
+    "isCore": true,
+    "description": "Install underground root deflection barriers to prevent invasive tree roots from cracking foundations, pipes, and driveways."
+  },
+  {
+    "slug": "tree-planting-transplanting",
+    "name": "Tree Planting & Large Specimen Moving",
+    "icon": "🌱",
+    "category": "Planting",
+    "tier": "core",
+    "isCore": true,
+    "description": "Expert selection, soil preparation, and planting of native shade trees, ornamental trees, and mature specimen moving."
+  },
+  {
+    "slug": "wood-chipping-mulching",
+    "name": "On-Site Wood Chipping & Mulch Delivery",
+    "icon": "🪵",
+    "category": "Maintenance",
+    "tier": "core",
+    "isCore": true,
+    "description": "Convert fallen branches and timber into fresh organic wood mulch for soil moisture retention and weed suppression."
+  },
+  {
+    "slug": "crown-reduction-thinning",
+    "name": "Canopy Crown Reduction & Wind Thinning",
+    "icon": "🍃",
+    "category": "Maintenance",
+    "tier": "core",
+    "isCore": true,
+    "description": "Reduce overall tree canopy height and density to increase sunlight penetration and reduce wind resistance during storms."
+  },
+  {
+    "slug": "hazardous-tree-assessment",
+    "name": "Dangerous & Leaning Tree Risk Evaluation",
+    "icon": "⚠️",
+    "category": "Inspection",
+    "tier": "core",
+    "isCore": true,
+    "description": "Identify hidden internal rot, hollow trunks, mushroom clusters, and soil heave near leaning structural trees."
+  },
+  {
+    "slug": "commercial-tree-care",
+    "name": "Commercial & Municipal Tree Maintenance",
+    "icon": "🏢",
+    "category": "Commercial",
+    "tier": "core",
+    "isCore": true,
+    "description": "Scheduled tree care programs for HOA communities, office parks, shopping centers, and municipal right-of-ways."
+  }
+]
