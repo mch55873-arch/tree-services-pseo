@@ -6,6 +6,7 @@ import { SITE } from "../lib/site";
 const DOMAIN = SITE.domain;
 export const SITEMAP_LIMIT = 2000;
 const URLS_PER_CITY = servicesData.length + 1;
+const TODAY = "2026-07-26";
 
 export type StateItem = (typeof database.states)[number];
 
@@ -19,9 +20,7 @@ function xmlResponse(body: string, method = "GET") {
     headers: {
       "content-type": "application/xml; charset=utf-8",
       "content-length": String(bytes.byteLength),
-      "cache-control": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000",
-      "cdn-cache-control": "public, max-age=604800",
-      "cloudflare-cdn-cache-control": "public, max-age=604800",
+      "cache-control": "public, max-age=86400, s-maxage=604800",
       "x-content-type-options": "nosniff",
       "access-control-allow-origin": "*",
     },
@@ -36,27 +35,30 @@ export function sitemapIndex(states: StateItem[], method = "GET") {
       entries.push(`https://${DOMAIN}/sitemaps/${state.slug}-${chunk}.xml`);
     }
   }
-  const body = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.map((loc) => `  <sitemap><loc>${xml(loc)}</loc></sitemap>`).join("\n")}\n</sitemapindex>`;
+  const body = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.map((loc) => `  <sitemap>\n    <loc>${xml(loc)}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </sitemap>`).join("\n")}
+</sitemapindex>`;
   return xmlResponse(body, method);
 }
 
 export function coreSitemap(states: StateItem[], method = "GET") {
   const corePaths = [
     "/",
-    "/about",
-    "/articles",
-    "/services",
-    "/locations",
-    "/contact",
-    "/privacy-policy",
-    "/terms",
-    "/disclaimer",
-    "/provider-disclosure",
+    "/about/",
+    "/articles/",
+    "/services/",
+    "/locations/",
+    "/contact/",
+    "/privacy-policy/",
+    "/terms/",
+    "/disclaimer/",
+    "/provider-disclosure/",
   ];
   const urls = [
     ...corePaths.map((path) => `https://${DOMAIN}${path}`),
-    ...servicesData.map((service) => `https://${DOMAIN}/services/${service.slug}`),
-    ...articlesData.map((article) => `https://${DOMAIN}/articles/${article.slug}`),
+    ...servicesData.map((service) => `https://${DOMAIN}/services/${service.slug}/`),
+    ...articlesData.map((article) => `https://${DOMAIN}/articles/${article.slug}/`),
     ...states.map((state) => `https://${state.slug}.${DOMAIN}/`),
   ];
   return sitemapUrlset(urls, method);
@@ -74,12 +76,15 @@ export function stateSitemap(state: StateItem, chunk: number, method = "GET") {
     const pageIndex = index % URLS_PER_CITY;
     const city = state.cities[cityIndex];
     const host = `${city[0]}-${state.slug}.${DOMAIN}`;
-    urls.push(pageIndex === 0 ? `https://${host}/` : `https://${host}/${servicesData[pageIndex - 1].slug}`);
+    urls.push(pageIndex === 0 ? `https://${host}/` : `https://${host}/${servicesData[pageIndex - 1].slug}/`);
   }
   return sitemapUrlset(urls, method);
 }
 
 function sitemapUrlset(urls: string[], method = "GET") {
-  const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((loc) => `  <url><loc>${xml(loc)}</loc></url>`).join("\n")}\n</urlset>`;
+  const body = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((loc) => `  <url>\n    <loc>${xml(loc)}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>`).join("\n")}
+</urlset>`;
   return xmlResponse(body, method);
 }

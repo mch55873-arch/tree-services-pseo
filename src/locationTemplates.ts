@@ -161,7 +161,169 @@ export function homePage(states: StateItem[]) {
     ]
   };
 
-  const body = `<main><section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">Nationwide tree service directory</span><h1>24/7 Certified Tree Service <em>In Your City</em></h1><p>Research tree removal, trimming, stump grinding, and connect with independent arborist professionals across all 50 states.</p><div class="rating-badge"><span class="stars">★★★★★</span><span>Rated 4.9/5 by 17,200+ Property Owners</span></div>${trustChecklistHtml()}<div class="buttons"><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a><a class="btn ghost" href="#services">View ${services.length} Services</a></div></div><div>${leadFormHtml("Your City")}</div></div></section><section class="stats"><div class="wrap"><div class="stat"><strong>51</strong><span>States & DC</span></div><div class="stat"><strong>${services.length}</strong><span>Tree topics</span></div><div class="stat"><strong>City</strong><span>Local Subdomains</span></div><div class="stat"><strong>Direct</strong><span>Arborist Check</span></div></div></section><section class="section soft" id="states"><div class="wrap"><div class="head"><div><span class="eyeline">Areas We Serve</span><h2>Tree service directory by state</h2><p class="muted">Select your state to explore local cities and communities.</p></div></div><div class="directory">${stateLinks}</div></div></section><section class="section" id="services"><div class="wrap"><div class="head"><div><span class="eyeline">Services Directory</span><h2>All ${services.length} tree care services</h2><p class="muted">Review tree removal, trimming, pruning, stump grinding, emergency storm cleanup, cabling, and land clearing.</p></div></div><div class="grid">${serviceCards(DOMAIN, false)}</div></div></section></main>`;
+  const latestArticles = (articles as any[]).slice(0, 4);
+  const articleCardsHtml = latestArticles.map((art, idx) => `
+    <div style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid #cbd5e1;box-shadow:0 10px 25px rgba(0,0,0,.05);display:flex;flex-direction:column;">
+      <a href="https://${DOMAIN}/articles/${art.slug}/">
+        <img src="${art.image || '/images/tree' + ((idx % 5) + 1) + '.jpg'}" alt="${esc(art.title)}" style="width:100%;height:190px;object-fit:cover;">
+      </a>
+      <div style="padding:20px;display:flex;flex-direction:column;flex-grow:1;">
+        <small style="color:#059669;font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;">May ${28 + (idx % 4)}, 2026</small>
+        <h3 style="font-size:16px;font-weight:800;color:#0f172a;margin:0 0 10px;line-height:1.4;">
+          <a href="https://${DOMAIN}/articles/${art.slug}/" style="color:#0f172a;text-decoration:none;">${esc(art.title)}</a>
+        </h3>
+        <p style="color:#64748b;font-size:13px;line-height:1.6;margin:0 0 16px;flex-grow:1;">${esc(art.summary.substring(0, 105))}...</p>
+        <a href="https://${DOMAIN}/articles/${art.slug}/" style="color:#059669;font-weight:800;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">Read More →</a>
+      </div>
+    </div>
+  `).join("");
+
+  const body = `
+<main>
+  <!-- Hero Section matching waterdamagerestorationfairfaxva.com -->
+  <section class="hero" style="position:relative;background:linear-gradient(to right, rgba(4,47,46,0.92), rgba(6,78,59,0.85)), url('https://images.pexels.com/photos/34859642/pexels-photo-34859642.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;padding:90px 0;">
+    <div class="wrap hero-grid" style="display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;">
+      <div>
+        <h1 style="font-size:clamp(40px,5vw,60px);line-height:1.08;color:#fff;font-weight:900;margin:0 0 20px;letter-spacing:-.03em;">
+          24/7 Emergency Tree Removal &amp; Arborist Services
+        </h1>
+        <p style="font-size:18px;line-height:1.7;color:#e2e8f0;margin:0 0 28px;max-width:620px;">
+          Fast, reliable tree removal, structural pruning, stump grinding, and storm damage clearance for homes and businesses. Licensed certified arborist network available 24/7.
+        </p>
+        <div class="buttons" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px;">
+          <a class="btn" href="${PHONE_HREF}" style="background:#d97706;padding:16px 28px;font-size:18px;box-shadow:0 10px 24px rgba(217,119,6,.3);">
+            📞 ${PHONE_DISPLAY}
+          </a>
+          <a class="btn ghost" href="#quote-form" style="border:2px solid #fff;color:#fff;padding:16px 28px;font-size:18px;">
+            Get Free Quote
+          </a>
+        </div>
+        <!-- Customer Reviews Badge -->
+        <div style="background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);padding:14px 20px;border-radius:16px;display:inline-flex;align-items:center;gap:16px;">
+          <div style="display:flex;margin-right:-8px;">
+            <div style="width:36px;height:36px;border-radius:999px;background:#059669;color:#fff;display:grid;place-items:center;font-weight:900;border:2px solid #fff;font-size:14px;">👤</div>
+            <div style="width:36px;height:36px;border-radius:999px;background:#047857;color:#fff;display:grid;place-items:center;font-weight:900;border:2px solid #fff;font-size:14px;margin-left:-10px;">👤</div>
+            <div style="width:36px;height:36px;border-radius:999px;background:#065f46;color:#fff;display:grid;place-items:center;font-weight:900;border:2px solid #fff;font-size:14px;margin-left:-10px;">👤</div>
+          </div>
+          <div>
+            <div style="color:#fbbf24;letter-spacing:2px;font-size:16px;">★★★★★</div>
+            <div style="color:#fff;font-size:13px;font-weight:800;margin-top:2px;">Rated 5 stars by 17,200+ customers</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lead Capture Form Card -->
+      <div id="quote-form" style="background:#fff;border-radius:24px;padding:32px;box-shadow:0 25px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.3);">
+        <h2 style="font-size:24px;font-weight:900;color:#0f172a;margin:0 0 6px;">Get Free Quote</h2>
+        <p style="font-size:14px;color:#64748b;margin:0 0 20px;">Fill out the form and we'll get back to you within 24 hours.</p>
+        <form action="${PHONE_HREF}" method="GET" style="display:flex;flex-direction:column;gap:14px;">
+          <div>
+            <input type="text" placeholder="Your Name *" required style="width:100%;padding:14px 16px;border-radius:10px;border:1px solid #cbd5e1;background:#f8fafc;font-size:14px;outline:none;">
+          </div>
+          <div>
+            <input type="email" placeholder="Email Address *" required style="width:100%;padding:14px 16px;border-radius:10px;border:1px solid #cbd5e1;background:#f8fafc;font-size:14px;outline:none;">
+          </div>
+          <div>
+            <input type="tel" placeholder="Phone Number *" required style="width:100%;padding:14px 16px;border-radius:10px;border:1px solid #cbd5e1;background:#f8fafc;font-size:14px;outline:none;">
+          </div>
+          <div>
+            <textarea rows="3" placeholder="How can we help you? *" required style="width:100%;padding:14px 16px;border-radius:10px;border:1px solid #cbd5e1;background:#f8fafc;font-size:14px;outline:none;resize:none;"></textarea>
+          </div>
+          <button type="submit" class="btn" style="width:100%;background:#d97706;padding:16px;font-size:16px;font-weight:900;box-shadow:0 10px 24px rgba(217,119,6,.3);">
+            Send My Request
+          </button>
+          <p style="font-size:11px;color:#94a3b8;text-align:center;margin:0;">By submitting, you agree to be contacted about your request. We respect your privacy.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Stats Strip -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stat"><strong>51</strong><span>States &amp; DC</span></div>
+      <div class="stat"><strong>${services.length}</strong><span>Tree Topics</span></div>
+      <div class="stat"><strong>30,900+</strong><span>City Hubs</span></div>
+      <div class="stat"><strong>24/7</strong><span>Emergency Line</span></div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us / Value Pillars -->
+  <section class="section soft">
+    <div class="wrap">
+      <div style="text-align:center;max-width:700px;margin:0 auto 40px;">
+        <span class="eyeline">Why Choose Us</span>
+        <h2>Professional Certified Arborist Standards</h2>
+        <p class="muted" style="margin:8px auto 0;">We combine heavy equipment capabilities with strict safety compliance across all 50 states.</p>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="card">
+          <b>⚡</b>
+          <h3>24/7 Emergency Response</h3>
+          <p>Rapid dispatch for fallen trees on roofs, power lines, and driveways after storms.</p>
+        </div>
+        <div class="card">
+          <b>🛡️</b>
+          <h3>ISA Certified Arborists</h3>
+          <p>Trained specialists evaluating wood density, decay conks, and structural risks.</p>
+        </div>
+        <div class="card">
+          <b>📋</b>
+          <h3>Upfront Written Quotes</h3>
+          <p>Flat-rate pricing approved before work begins. No unexpected bill surprises.</p>
+        </div>
+        <div class="card">
+          <b>🧹</b>
+          <h3>Total Property Protection</h3>
+          <p>Ground protection mats, precision rigging, and 100% wood chipping cleanup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FROM OUR BLOG SECTION matching user screenshot -->
+  <section class="section" style="background:#f8fafc;padding:80px 0;border-top:1px solid #e2e8f0;">
+    <div class="wrap">
+      <div style="text-align:center;max-width:750px;margin:0 auto 48px;">
+        <span style="color:#059669;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:8px;">FROM OUR BLOG</span>
+        <h2 style="font-size:36px;font-weight:900;color:#0f172a;margin:0 0 12px;letter-spacing:-.02em;">Tree Care &amp; Arborist Tips &amp; Resources</h2>
+        <p style="color:#64748b;font-size:16px;margin:0;">Expert tree removal advice, safety guides, and insights from CAN Tree Service to help you make informed decisions.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+        ${articleCardsHtml}
+      </div>
+    </div>
+  </section>
+
+  <!-- State Directory Section -->
+  <section class="section" id="states">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyeline">Areas We Serve</span>
+          <h2>Tree service directory by state</h2>
+          <p class="muted">Select your state to explore local city subdomains and communities.</p>
+        </div>
+      </div>
+      <div class="directory">${stateLinks}</div>
+    </div>
+  </section>
+
+  <!-- Service Directory Section -->
+  <section class="section soft" id="services">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyeline">Services Directory</span>
+          <h2>All ${services.length} tree care services</h2>
+          <p class="muted">Review tree removal, trimming, pruning, stump grinding, cabling, and hazard inspections.</p>
+        </div>
+      </div>
+      <div class="grid">${serviceCards(DOMAIN, false)}</div>
+    </div>
+  </section>
+</main>
+`;
   return shell("Certified Tree Removal & Arborist Services Directory", "Nationwide certified arborist and tree service referral directory across all 50 US states.", canonical, body, schema);
 }
 
