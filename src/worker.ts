@@ -21,9 +21,26 @@ type Env = { ASSETS: { fetch(input: Request | string): Promise<Response> } };
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
 
 const DOMAIN = SITE.domain;
-const STATES = database.states as StateItem[];
-const STATE_BY_SLUG = new Map(STATES.map((s) => [s.slug.toLowerCase(), s]));
-const STATE_SLUGS = STATES.map((s) => s.slug.toLowerCase()).sort((a, b) => b.length - a.length);
+const rawStates = (database as any).states || [];
+
+function getStateSlug(state: any): string {
+  if (state.slug) return state.slug.toLowerCase();
+  if (state.name) return state.name.toLowerCase().replace(/\s+/g, "-");
+  if (state.code) return state.code.toLowerCase();
+  return "";
+}
+
+const STATES: StateItem[] = rawStates.map((s: any) => {
+  const slug = getStateSlug(s);
+  const cities: [string, string][] = (s.cities || []).map((c: any) => {
+    if (Array.isArray(c)) return [c[0], c[1]];
+    return [c.slug || c.name.toLowerCase().replace(/\s+/g, "-"), c.name];
+  });
+  return { ...s, slug, cities };
+});
+
+const STATE_BY_SLUG = new Map(STATES.map((s) => [s.slug, s]));
+const STATE_SLUGS = STATES.map((s) => s.slug).filter(Boolean).sort((a, b) => b.length - a.length);
 
 function parseSubdomain(subdomain: string): { state: StateItem; city?: [string, string] } | null {
   const sub = subdomain.toLowerCase();
