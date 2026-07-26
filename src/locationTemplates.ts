@@ -27,106 +27,104 @@ function header() {
   return `<div class="top"><div class="wrap"><span>● &nbsp; Nationwide certified arborist information and tree service provider directory</span><span><b>Independent provider network</b> &nbsp; | &nbsp; Call ${PHONE_DISPLAY}</span></div></div><header class="nav"><div class="wrap"><a class="brand" href="https://${DOMAIN}/"><span class="logo">CT</span><span>${SITE.name}<small>Tree Removal · Trimming · Stump Grinding</small></span></a><nav class="links"><a href="https://${DOMAIN}/services/">Services</a><a href="https://${DOMAIN}/areas-we-serve/">Areas We Serve</a><a href="https://${DOMAIN}/articles/">Arborist Guides</a><a href="https://${DOMAIN}/about/">About</a><a href="https://${DOMAIN}/contact/">Contact</a></nav><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></header>`;
 }
 
-function popupModalHtml() {
+function footer() {
   return `
-<div id="quote-modal" class="modal-overlay" aria-hidden="true">
-  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-header">
-      <button type="button" class="modal-close" id="close-quote-modal" aria-label="Close modal">✕</button>
-      <div class="modal-badge">★★★★★ <span>4.9/5 Rating by 17,200+ Homeowners</span></div>
-      <h3 id="modal-title">Get Instant Free Arborist Estimate</h3>
-      <p>Fast response within 15 minutes · Available 24/7 nationwide</p>
+<section class="pre-footer">
+  <div class="wrap pre-footer-wrap">
+    <div>
+      <h2>Hazardous Tree or Emergency Storm Damage? Let's Fix That Today.</h2>
+      <p>Same-day certified arborist &amp; emergency tree removal across all 50 states. Friendly, licensed &amp; upfront pricing.</p>
     </div>
-    <div class="modal-body">
-      <form class="modal-form" action="${PHONE_HREF}" method="GET">
-        <div>
-          <input type="text" placeholder="Your Full Name *" required>
-        </div>
-        <div>
-          <input type="tel" placeholder="Phone Number *" required>
-        </div>
-        <div>
-          <input type="email" placeholder="Email Address *" required>
-        </div>
-        <div>
-          <select required>
-            <option value="">Select Service Needed *</option>
-            <option>Emergency Tree Removal</option>
-            <option>Tree Trimming &amp; Pruning</option>
-            <option>Stump Grinding &amp; Removal</option>
-            <option>Arborist Hazard Assessment</option>
-            <option>Storm Damage Clearance</option>
-            <option>Land &amp; Lot Clearing</option>
-          </select>
-        </div>
-        <div>
-          <textarea rows="2" placeholder="Briefly describe your tree issue or address..."></textarea>
-        </div>
-        <button type="submit" class="modal-submit">📞 Send Quote Request</button>
-        <div class="modal-trust">
-          <span>🔒 100% Free Quote</span>
-          <span>•</span>
-          <span>No Obligation</span>
-          <span>•</span>
-          <span>Licensed &amp; Insured</span>
-        </div>
-      </form>
+    <div class="pre-footer-btns">
+      <a class="btn-navy" href="${PHONE_HREF}">📞 Call ${PHONE_DISPLAY}</a>
+      <a class="btn-outline" href="https://${DOMAIN}/contact/">Request Online Quote</a>
     </div>
   </div>
-</div>
-
-<script>
-  (function() {
-    function openModal() {
-      var modal = document.getElementById('quote-modal');
-      if (modal) {
-        modal.classList.add('active');
-        modal.setAttribute('aria-hidden', 'false');
-      }
-    }
-    function closeModal() {
-      var modal = document.getElementById('quote-modal');
-      if (modal) {
-        modal.classList.remove('active');
-        modal.setAttribute('aria-hidden', 'true');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      var closeBtn = document.getElementById('close-quote-modal');
-      var modal = document.getElementById('quote-modal');
-      if (closeBtn) closeBtn.addEventListener('click', closeModal);
-      if (modal) {
-        modal.addEventListener('click', function(e) {
-          if (e.target === modal) closeModal();
-        });
-      }
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeModal();
-      });
-
-      // Auto-open after 5 seconds
-      setTimeout(function() {
-        if (!sessionStorage.getItem('modalShown')) {
-          openModal();
-          sessionStorage.setItem('modalShown', 'true');
-        }
-      }, 5000);
-
-      // Trigger modal on any quote link/button click
-      document.querySelectorAll('a[href*="#quote"], a[href*="/contact/"]').forEach(function(el) {
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          openModal();
-        });
-      });
-    })();
-</script>
+</section>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-title">
+          <span class="footer-logo">CT</span>
+          <span>${SITE.name}</span>
+        </div>
+        <p class="footer-desc">Nationwide certified arborist &amp; emergency tree removal specialists. Licensed, fully insured, and independent arborist referral network since 2010.</p>
+        <div class="footer-rating">
+          <span>★★★★★</span>
+          <span>4.9/5 · 17,200+ Verified Reviews</span>
+        </div>
+        <div class="footer-license">ISA Certified Arborist #XXXXXX · Fully Insured &amp; Bonded</div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="https://${DOMAIN}/services/tree-removal/">Emergency Tree Removal</a>
+        <a href="https://${DOMAIN}/services/tree-trimming/">Tree Trimming &amp; Pruning</a>
+        <a href="https://${DOMAIN}/services/stump-grinding/">Stump Grinding Service</a>
+        <a href="https://${DOMAIN}/services/arborist-inspection/">Arborist Health Assessment</a>
+        <a href="https://${DOMAIN}/services/tree-cabling-bracing/">Tree Cabling &amp; Bracing</a>
+        <a href="https://${DOMAIN}/services/">All ${services.length} Services →</a>
+      </div>
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <a href="https://${DOMAIN}/areas-we-serve/">All 51 States &amp; DC</a>
+        <a href="https://california.${DOMAIN}/">California Tree Services</a>
+        <a href="https://texas.${DOMAIN}/">Texas Tree Services</a>
+        <a href="https://florida.${DOMAIN}/">Florida Tree Services</a>
+        <a href="https://illinois.${DOMAIN}/">Illinois Tree Services</a>
+        <a href="https://${DOMAIN}/areas-we-serve/">All 30,900+ Cities →</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <a href="${PHONE_HREF}" style="color:#fff;font-weight:900;font-size:16px;">${PHONE_DISPLAY}</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span>
+          <span>dispatch@${DOMAIN}</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <span>Nationwide Arborist Network, USA</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>🕒</span>
+          <span>Mon–Sat 7am–7pm · 24/7 Emergency Response</span>
+        </div>
+      </div>
+    </div>
+    <div class="sub-footer">
+      <div>© ${new Date().getUTCFullYear()} ${SITE.name}. All rights reserved.</div>
+      <div class="sub-footer-links">
+        <a href="https://${DOMAIN}/about/">About</a>
+        <a href="https://${DOMAIN}/services/">Services</a>
+        <a href="https://${DOMAIN}/areas-we-serve/">Areas</a>
+        <a href="https://${DOMAIN}/provider-disclosure/">Disclosure</a>
+        <a href="https://${DOMAIN}/privacy-policy/">Privacy</a>
+        <a href="https://${DOMAIN}/terms/">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
 `;
 }
 
+function leadFormHtml(locationTitle: string) {
+  return `<div class="form-card"><h2>Request Free Tree Quote</h2><p>Get best estimate for certified tree care in ${esc(locationTitle)}</p><form action="${PHONE_HREF}" method="GET"><div class="form-group"><input type="text" placeholder="Your Full Name *" required></div><div class="form-group"><input type="tel" placeholder="Phone Number *" required></div><div class="form-group"><select required><option value="">Select Service Needed *</option><option>Emergency Tree Removal</option><option>Tree Trimming &amp; Pruning</option><option>Stump Grinding &amp; Removal</option><option>Hazard Tree Inspection</option><option>Storm Damage Clearance</option><option>Land &amp; Lot Clearing</option></select></div><div class="form-group"><textarea rows="2" placeholder="Describe tree size or property details..."></textarea></div><button type="submit" class="btn" style="width:100%">Submit &amp; Call ${PHONE_DISPLAY}</button></form></div>`;
+}
+
+function trustChecklistHtml() {
+  return `<div class="checklist"><div class="check-item"><span>✔</span> Upfront &amp; Competitive Tree Estimates</div><div class="check-item"><span>✔</span> Certified Arborists &amp; Licensed Crews</div><div class="check-item"><span>✔</span> Knowledge of Local Streets &amp; Hazards</div><div class="check-item"><span>✔</span> 24/7 Emergency Storm Damage Line</div><div class="check-item"><span>✔</span> Heavy Removal &amp; Crane Operations</div><div class="check-item"><span>✔</span> 100% Property Protection Commitment</div></div>`;
+}
+
+function popupModalHtml() {
+  return `<div id="quote-modal" class="modal-overlay" aria-hidden="true"><div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-header"><button type="button" class="modal-close" id="close-quote-modal" aria-label="Close modal">✕</button><div class="modal-badge">★★★★★ <span>4.9/5 Rating by 17,200+ Homeowners</span></div><h3 id="modal-title">Get Instant Free Arborist Estimate</h3><p>Fast response within 15 minutes · Available 24/7 nationwide</p></div><div class="modal-body"><form class="modal-form" action="${PHONE_HREF}" method="GET"><div><input type="text" placeholder="Your Full Name *" required></div><div><input type="tel" placeholder="Phone Number *" required></div><div><input type="email" placeholder="Email Address *" required></div><div><select required><option value="">Select Service Needed *</option><option>Emergency Tree Removal</option><option>Tree Trimming &amp; Pruning</option><option>Stump Grinding &amp; Removal</option><option>Arborist Hazard Assessment</option><option>Storm Damage Clearance</option><option>Land &amp; Lot Clearing</option></select></div><div><textarea rows="2" placeholder="Briefly describe your tree issue or address..."></textarea></div><button type="submit" class="modal-submit">📞 Send Quote Request</button><div class="modal-trust"><span>🔒 100% Free Quote</span><span>•</span><span>No Obligation</span><span>•</span><span>Licensed &amp; Insured</span></div></form></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){var m=document.getElementById("quote-modal");var c=document.getElementById("close-quote-modal");function openM(){if(m){m.classList.add("active");m.setAttribute("aria-hidden","false");}}function closeM(){if(m){m.classList.remove("active");m.setAttribute("aria-hidden","true");}}if(c)c.addEventListener("click",closeM);if(m)m.addEventListener("click",function(e){if(e.target===m)closeM();});document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM();});setTimeout(function(){if(!sessionStorage.getItem("modalShown")){openM();sessionStorage.setItem("modalShown","true");}},5000);document.querySelectorAll("a").forEach(function(el){if(el.getAttribute("href")&&el.getAttribute("href").indexOf("/contact")!==-1){el.addEventListener("click",function(e){e.preventDefault();openM();});}});});</script>`;
+}
+
 function shell(title: string, description: string, canonical: string, body: string, schema: unknown) {
-  return `<!doctype html><html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} | ${SITE.name}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${canonical}"><meta name="robots" content="index,follow"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><style>${CSS}</style><script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script></head><body>${header()}${body}${popupModalHtml()}${footer()}<a class="btn sticky" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></body></html>`;
+  const schemaJson = JSON.stringify(schema).replace(/</g, "\\u003c");
+  return `<!doctype html><html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} | ${SITE.name}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${canonical}"><meta name="robots" content="index,follow"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><style>${CSS}</style><script type="application/ld+json">${schemaJson}</script></head><body>${header()}${body}${popupModalHtml()}${footer()}<a class="btn sticky" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></body></html>`;
 }
 
 function serviceCards(host: string, local: boolean) {
