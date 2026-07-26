@@ -1,6 +1,19 @@
 import database from "../data/usa_database.json";
 import services from "../data/services.json";
-import { cityPage, localServicePage, notFoundPage, statePage, staticPage } from "./locationTemplates";
+import articles from "../data/articles.json";
+import {
+  areasWeServePage,
+  articlePage,
+  articlesHubPage,
+  cityPage,
+  homePage,
+  infoPage,
+  localServicePage,
+  nationalServicePage,
+  notFoundPage,
+  servicesHubPage,
+  statePage,
+} from "./locationTemplates";
 import { coreSitemap, sitemapIndex, stateSitemap, type StateItem } from "./sitemaps";
 import { SITE } from "../lib/site";
 
@@ -58,37 +71,6 @@ async function cached(request: Request, ctx: Ctx, render: () => Response) {
   return result;
 }
 
-const STATIC_PAGES: Record<string, { title: string; html: string }> = {
-  "/about/": {
-    title: "About Us",
-    html: `<h2>About ${SITE.name}</h2><p>${SITE.name} is an independent certified arborist information and tree service referral network serving communities across all 50 states. We connect property owners with independent, qualified local tree removal specialists, stump grinding technicians, and certified arborists.</p>`,
-  },
-  "/contact/": {
-    title: "Contact Us",
-    html: `<h2>Contact Referral Dispatch</h2><p>For immediate emergency tree removal or service inquiries, call our 24/7 arborist hotline at <strong>${SITE.phoneDisplay}</strong>.</p>`,
-  },
-  "/privacy-policy/": {
-    title: "Privacy Policy",
-    html: `<h2>Privacy Policy</h2><p>Your privacy is important to us. Information collected through phone inquiries or form submissions is strictly utilized to connect property owners with independent local tree service providers. We do not sell or lease personal data to unauthorized third parties.</p>`,
-  },
-  "/terms/": {
-    title: "Terms of Use",
-    html: `<h2>Terms of Use</h2><p>By using ${SITE.name}, you acknowledge that this website operates as an informational directory and referral service. All service contractors are independent businesses responsible for their own licensing, insurance, and performance.</p>`,
-  },
-  "/disclaimer/": {
-    title: "Legal Disclaimer",
-    html: `<h2>Legal Disclaimer</h2><p>The information on this website is for educational and promotional purposes. Property owners should verify contractor credentials, licensing, insurance coverage, and written estimates prior to authorizing heavy tree removal work.</p>`,
-  },
-  "/provider-disclosure/": {
-    title: "Independent Provider Disclosure",
-    html: `<h2>Provider Disclosure</h2><p>Providers listed or referred through ${SITE.name} operate independently. ${SITE.name} does not directly employ contractors or perform tree removal services. Always request proof of liability insurance and workers' compensation.</p>`,
-  },
-  "/accessibility/": {
-    title: "Accessibility Statement",
-    html: `<h2>Web Accessibility Statement</h2><p>${SITE.name} is committed to digital accessibility compliant with WCAG 2.1 AA standards. If you encounter any accessibility issues, please contact us for immediate assistance.</p>`,
-  },
-};
-
 export default {
   async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
     if (!["GET", "HEAD"].includes(request.method)) return new Response("Method Not Allowed", { status: 405 });
@@ -104,6 +86,10 @@ export default {
     }
 
     if (hostname === DOMAIN || hostname.endsWith(".workers.dev")) {
+      if (path === "/" || path === "") {
+        return cached(request, ctx, () => htmlResponse(homePage(STATES), method));
+      }
+
       if (path === "/robots.txt") {
         const body = `User-agent: *\nAllow: /\nSitemap: https://${DOMAIN}/sitemap.xml\n`;
         return new Response(method === "HEAD" ? null : body, {
@@ -128,10 +114,81 @@ export default {
         return cached(request, ctx, () => sitemap);
       }
 
-      const staticInfo = STATIC_PAGES[path] || (path.endsWith("/") ? null : STATIC_PAGES[`${path}/`]);
-      if (staticInfo) {
-        if (!path.endsWith("/")) return redirect(`https://${DOMAIN}${path}/`);
-        return cached(request, ctx, () => htmlResponse(staticPage(staticInfo.title, path, staticInfo.html), method));
+      if (path === "/services" || path === "/services/") {
+        return cached(request, ctx, () => htmlResponse(servicesHubPage(), method));
+      }
+
+      if (path.startsWith("/services/")) {
+        const slug = path.split("/")[2];
+        const service = services.find((s) => s.slug === slug);
+        if (service) {
+          return cached(request, ctx, () => htmlResponse(nationalServicePage(service as any), method));
+        }
+      }
+
+      if (path === "/areas-we-serve" || path === "/areas-we-serve/" || path === "/locations" || path === "/locations/") {
+        return cached(request, ctx, () => htmlResponse(areasWeServePage(STATES), method));
+      }
+
+      if (path === "/articles" || path === "/articles/") {
+        return cached(request, ctx, () => htmlResponse(articlesHubPage(), method));
+      }
+
+      if (path.startsWith("/articles/")) {
+        const slug = path.split("/")[2];
+        const article = (articles as any[]).find((a) => a.slug === slug);
+        if (article) {
+          return cached(request, ctx, () => htmlResponse(articlePage(article), method));
+        }
+      }
+
+      const infoPages: Record<string, string> = {
+        "/about": `About ${SITE.name}`,
+        "/about/": `About ${SITE.name}`,
+        "/contact": "Contact Us",
+        "/contact/": "Contact Us",
+        "/privacy-policy": "Privacy Policy",
+        "/privacy-policy/": "Privacy Policy",
+        "/terms": "Terms of Use",
+        "/terms/": "Terms of Use",
+        "/provider-disclosure": "Provider Disclosure",
+        "/provider-disclosure/": "Provider Disclosure",
+        "/accessibility": "Accessibility Statement",
+        "/accessibility/": "Accessibility Statement",
+        "/disclaimer": "Legal Disclaimer",
+        "/disclaimer/": "Legal Disclaimer",
+      };
+
+      if (infoPages[path]) {
+        const title = infoPages[path];
+        const content = `<p>Welcome to ${title} on ${SITE.name}. We provide independent certified arborist information, tree service routing, and provider referral information across all 50 US states.</p><p>For inquiries, call <strong>${SITE.phoneDisplay}</strong>.</p>`;
+        return cached(request, ctx, () => htmlResponse(infoPage(title, content, path), method));
+      }
+
+      const parts = path.split("/").filter(Boolean);
+      const locationPrefix = parts[0] === "locations" || parts[0] === "areas-we-serve";
+
+      if (locationPrefix && parts[1] && STATE_BY_SLUG.has(parts[1])) {
+        const state = STATE_BY_SLUG.get(parts[1])!;
+        const citySlug = parts[2];
+        if (citySlug && state.cities.some(([slug]) => slug === citySlug)) {
+          url.hostname = `${citySlug}-${state.slug}.${DOMAIN}`;
+          url.pathname = parts[3] ? `/${parts.slice(3).join("/")}/` : "/";
+        } else {
+          url.hostname = `${state.slug}.${DOMAIN}`;
+          url.pathname = "/";
+        }
+        return redirect(url.toString());
+      }
+
+      if (parts[0] && STATE_BY_SLUG.has(parts[0])) {
+        const state = STATE_BY_SLUG.get(parts[0])!;
+        const citySlug = parts[1];
+        url.hostname = citySlug && state.cities.some(([slug]) => slug === citySlug)
+          ? `${citySlug}-${state.slug}.${DOMAIN}`
+          : `${state.slug}.${DOMAIN}`;
+        url.pathname = parts[2] ? `/${parts.slice(2).join("/")}/` : "/";
+        return redirect(url.toString());
       }
 
       return env.ASSETS.fetch(request);
@@ -139,7 +196,7 @@ export default {
 
     if (!hostname.endsWith(`.${DOMAIN}`)) return notFound("This hostname is not configured.", method);
 
-    if (path.startsWith("/_next/") || /\.[a-z0-9]{2,8}$/i.test(path)) {
+    if (path.startsWith("/_next/") || path.startsWith("/images/") || /\.[a-z0-9]{2,8}$/i.test(path)) {
       url.hostname = DOMAIN;
       return env.ASSETS.fetch(new Request(url.toString(), request));
     }
@@ -171,6 +228,6 @@ export default {
     const service = services.find((item) => item.slug === routeParts[0]);
     if (!service) return notFound("This tree service topic could not be found.", method);
 
-    return cached(request, ctx, () => htmlResponse(localServicePage(location.state, location.city!, service, hostname), method));
+    return cached(request, ctx, () => htmlResponse(localServicePage(location.state, location.city!, service as any, hostname), method));
   },
 };
