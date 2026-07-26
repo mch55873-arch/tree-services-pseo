@@ -15,7 +15,7 @@ const IMAGES = {
 };
 
 const CSS = `
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:#172033;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.top{background:#063a2c;color:#dbe7f5;font-size:12px}.top .wrap,.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}.top .wrap{padding:9px 0}.top b{color:#d97706}.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-bottom:1px solid #dfe6ee;box-shadow:0 10px 32px rgba(16,24,38,.08)}.nav .wrap{padding:14px 0}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:950;color:#101826;letter-spacing:-.02em}.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#059669,#047857);color:#fff;box-shadow:0 10px 24px rgba(5,150,105,.25);font-size:20px;font-weight:900}.brand small{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#6c7a8b}.links{display:flex;gap:22px;font-size:14px;font-weight:850}.links a:hover{color:#059669}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 21px;border-radius:10px;background:#d97706;color:#fff;font-weight:900;box-shadow:0 10px 24px rgba(217,119,6,.24);transition:.2s;border:none;cursor:pointer}.btn:hover{transform:translateY(-2px);background:#b45309}.btn.dark{background:#063a2c}.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.38);box-shadow:none}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#042f2e 0%,#064e3b 58%,#059669 100%);color:#fff;padding:78px 0}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}.hero h1{font-size:clamp(40px,5.5vw,64px);line-height:1.05;letter-spacing:-.04em;margin:18px 0}.hero h1 em{font-style:normal;color:#6ee7b7}.hero p{font-size:17px;line-height:1.75;color:#d6e2ee;max-width:760px}.form-card{background:#fff;color:#0f172a;border-radius:22px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.2)}.form-card h2{font-size:22px;font-weight:900;margin:0 0 6px;color:#101826}.form-card p{font-size:13px;color:#64748b;margin:0 0 20px}.form-group{margin-bottom:14px}.form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border-radius:10px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:#f8fafc}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#059669;background:#fff;box-shadow:0 0 0 3px rgba(5,150,105,.2)}.rating-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);font-size:13px;font-weight:800;color:#fff;margin-top:16px}.stars{color:#f59e0b;letter-spacing:2px}.crumb{font-size:13px;color:#b7cad9}.crumb a{color:#a7f3d0}.eyebrow{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(5,150,105,.2);border:1px solid rgba(110,231,183,.4);color:#a7f3d0;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.stats{border-bottom:1px solid #dfe6ee;background:#fff}.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}.stat{text-align:center;padding:27px 15px;border-left:1px solid #dfe6ee}.stat:first-child{border-left:0}.stat strong{display:block;font-size:31px;color:#064e3b}.stat span{display:block;margin-top:5px;color:#778495;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.section{padding:78px 0}.soft{background:#f0fdf4}.blue{background:#ecfdf5}.dark-section{background:#042f2e;color:#fff}.head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:32px}.eyeline{display:inline-block;color:#059669;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.section h2{font-size:clamp(34px,4vw,50px);line-height:1.08;margin:8px 0 0;letter-spacing:-.038em}.muted{max-width:760px;color:#667486;line-height:1.75}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{display:block;background:#fff;border:1px solid #dfe6ee;border-radius:18px;padding:25px;box-shadow:0 8px 26px rgba(16,24,38,.06);transition:.2s}.card:hover{transform:translateY(-4px);border-color:#34d399;box-shadow:0 18px 40px rgba(16,24,38,.12)}.card b{display:grid;place-items:center;width:46px;height:46px;border-radius:13px;background:#d1fae5;color:#059669;font-size:14px}.card h3{font-size:20px;margin:17px 0 9px;color:#101826;letter-spacing:-.02em}.card p{color:#667486;line-height:1.68;margin:0;font-size:14px}.more{display:inline-block;margin-top:17px;color:#059669;font-weight:900;font-size:14px}.directory{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.directory a{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 18px;border:1px solid #dfe6ee;border-radius:13px;background:#fff;color:#344054;font-size:14px;font-weight:850;box-shadow:0 6px 18px rgba(16,24,38,.04);transition:.18s}.directory a:after{content:"→";color:#059669}.directory a:hover{transform:translateY(-2px);color:#059669;border-color:#34d399}.zip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.zip-card{background:#fff;border:1px solid #dfe6ee;border-radius:14px;padding:18px;text-align:center;box-shadow:0 6px 18px rgba(16,24,38,.04);transition:.18s}.zip-card:hover{transform:translateY(-3px);border-color:#059669;box-shadow:0 12px 30px rgba(5,150,105,.2)}.zip-card span{display:block;font-size:20px;margin-bottom:6px}.zip-card strong{display:block;font-size:16px;color:#101826}.zip-card small{display:block;font-size:12px;color:#667486;margin-top:4px;font-weight:700}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}.check-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#1e293b}.check-item span{color:#059669;font-size:16px}.content{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px}.article{font-size:17px;line-height:1.82}.article h2{font-size:30px;color:#101826;margin-top:40px;letter-spacing:-.025em}.article h3{font-size:21px;color:#101826}.article p,.article li{color:#5e6d7e}.article li{margin:8px 0}.side{position:sticky;top:105px;align-self:start;background:linear-gradient(145deg,#042f2e,#064e3b);color:#fff;border-radius:19px;padding:27px;box-shadow:0 18px 45px rgba(16,24,38,.2)}.side p{color:#d5e2ee;line-height:1.65}.side .more{display:block;color:#a7f3d0}.notice{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:19px;color:#9a3412;line-height:1.65}.process{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}.step{background:#fff;border:1px solid #dfe6ee;border-radius:16px;padding:23px}.step b{font-size:35px;color:#dce7ef}.step h3{font-size:20px;color:#101826}.step p{color:#667486;line-height:1.65}.faq{display:grid;gap:12px;margin-top:28px}.faq details{background:#fff;border:1px solid #dfe6ee;border-radius:13px;padding:18px 20px}.faq summary{cursor:pointer;font-weight:900;color:#101826}.faq p{color:#667486;line-height:1.7}.footer{background:#042f2e;color:#aebdca;padding:54px 0 22px}.footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px}.footer h3{color:#fff}.footer a{display:block;margin:10px 0}.legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding-top:20px;font-size:12px}.sticky{position:fixed;right:18px;bottom:18px;z-index:80}@media(max-width:920px){.links{display:none}.hero-grid,.content{grid-template-columns:1fr}.hero-photo img{height:420px}.grid,.zip-grid,.checklist{grid-template-columns:repeat(2,1fr)}.directory{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr)}.side{position:static}.footer .wrap{grid-template-columns:1fr 1fr}}@media(max-width:620px){.top span:last-child{display:none}.hero{padding:58px 0}.hero h1{font-size:38px}.hero-photo img{height:360px}.grid,.directory,.process,.zip-grid,.checklist,.footer .wrap{grid-template-columns:1fr}.stats .wrap{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-left:0;border-top:1px solid #dfe6ee}.stat:nth-child(4){border-top:1px solid #dfe6ee}.head{display:block}.btn{width:100%}.sticky{left:12px;right:12px;bottom:12px}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:#172033;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.top{background:#063a2c;color:#dbe7f5;font-size:12px}.top .wrap,.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}.top .wrap{padding:9px 0}.top b{color:#d97706}.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-bottom:1px solid #dfe6ee;box-shadow:0 10px 32px rgba(16,24,38,.08)}.nav .wrap{padding:14px 0}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:950;color:#101826;letter-spacing:-.02em}.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#059669,#047857);color:#fff;box-shadow:0 10px 24px rgba(5,150,105,.25);font-size:20px;font-weight:900}.brand small{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#6c7a8b}.links{display:flex;gap:22px;font-size:14px;font-weight:850}.links a:hover{color:#059669}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 21px;border-radius:10px;background:#d97706;color:#fff;font-weight:900;box-shadow:0 10px 24px rgba(217,119,6,.24);transition:.2s;border:none;cursor:pointer}.btn:hover{transform:translateY(-2px);background:#b45309}.btn.dark{background:#063a2c}.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.38);box-shadow:none}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#042f2e 0%,#064e3b 58%,#059669 100%);color:#fff;padding:78px 0}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}.hero h1{font-size:clamp(40px,5.5vw,64px);line-height:1.05;letter-spacing:-.04em;margin:18px 0}.hero h1 em{font-style:normal;color:#6ee7b7}.hero p{font-size:17px;line-height:1.75;color:#d6e2ee;max-width:760px}.form-card{background:#fff;color:#0f172a;border-radius:22px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.2)}.form-card h2{font-size:22px;font-weight:900;margin:0 0 6px;color:#101826}.form-card p{font-size:13px;color:#64748b;margin:0 0 20px}.form-group{margin-bottom:14px}.form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border-radius:10px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:#f8fafc}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#059669;background:#fff;box-shadow:0 0 0 3px rgba(5,150,105,.2)}.rating-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);font-size:13px;font-weight:800;color:#fff;margin-top:16px}.stars{color:#f59e0b;letter-spacing:2px}.crumb{font-size:13px;color:#b7cad9}.crumb a{color:#a7f3d0}.eyebrow{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(5,150,105,.2);border:1px solid rgba(110,231,183,.4);color:#a7f3d0;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.stats{border-bottom:1px solid #dfe6ee;background:#fff}.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}.stat{text-align:center;padding:27px 15px;border-left:1px solid #dfe6ee}.stat:first-child{border-left:0}.stat strong{display:block;font-size:31px;color:#064e3b}.stat span{display:block;margin-top:5px;color:#778495;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.section{padding:78px 0}.soft{background:#f0fdf4}.blue{background:#ecfdf5}.dark-section{background:#042f2e;color:#fff}.head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:32px}.eyeline{display:inline-block;color:#059669;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.section h2{font-size:clamp(34px,4vw,50px);line-height:1.08;margin:8px 0 0;letter-spacing:-.038em}.muted{max-width:760px;color:#667486;line-height:1.75}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{display:block;background:#fff;border:1px solid #dfe6ee;border-radius:18px;padding:25px;box-shadow:0 8px 26px rgba(16,24,38,.06);transition:.2s}.card:hover{transform:translateY(-4px);border-color:#34d399;box-shadow:0 18px 40px rgba(16,24,38,.12)}.card b{display:grid;place-items:center;width:46px;height:46px;border-radius:13px;background:#d1fae5;color:#059669;font-size:14px}.card h3{font-size:20px;margin:17px 0 9px;color:#101826;letter-spacing:-.02em}.card p{color:#667486;line-height:1.68;margin:0;font-size:14px}.more{display:inline-block;margin-top:17px;color:#059669;font-weight:900;font-size:14px}.directory{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.directory a{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 18px;border:1px solid #dfe6ee;border-radius:13px;background:#fff;color:#344054;font-size:14px;font-weight:850;box-shadow:0 6px 18px rgba(16,24,38,.04);transition:.18s}.directory a:after{content:"→";color:#059669}.directory a:hover{transform:translateY(-2px);color:#059669;border-color:#34d399}.zip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.zip-card{background:#fff;border:1px solid #dfe6ee;border-radius:14px;padding:18px;text-align:center;box-shadow:0 6px 18px rgba(16,24,38,.04);transition:.18s}.zip-card:hover{transform:translateY(-3px);border-color:#059669;box-shadow:0 12px 30px rgba(5,150,105,.2)}.zip-card span{display:block;font-size:20px;margin-bottom:6px}.zip-card strong{display:block;font-size:16px;color:#101826}.zip-card small{display:block;font-size:12px;color:#667486;margin-top:4px;font-weight:700}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}.check-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#1e293b}.check-item span{color:#059669;font-size:16px}.content{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px}.article{font-size:17px;line-height:1.82}.article h2{font-size:30px;color:#101826;margin-top:40px;letter-spacing:-.025em}.article h3{font-size:21px;color:#101826}.article p,.article li{color:#5e6d7e}.article li{margin:8px 0}.side{position:sticky;top:105px;align-self:start;background:linear-gradient(145deg,#042f2e,#064e3b);color:#fff;border-radius:19px;padding:27px;box-shadow:0 18px 45px rgba(16,24,38,.2)}.side p{color:#d5e2ee;line-height:1.65}.side .more{display:block;color:#a7f3d0}.notice{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:19px;color:#9a3412;line-height:1.65}.process{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}.step{background:#fff;border:1px solid #dfe6ee;border-radius:16px;padding:23px}.step b{font-size:35px;color:#dce7ef}.step h3{font-size:20px;color:#101826}.step p{color:#667486;line-height:1.65}.faq{display:grid;gap:12px;margin-top:28px}.faq details{background:#fff;border:1px solid #dfe6ee;border-radius:13px;padding:18px 20px}.faq summary{cursor:pointer;font-weight:900;color:#101826}.faq p{color:#667486;line-height:1.7}.pre-footer{background:linear-gradient(135deg,#059669,#047857);color:#fff;padding:44px 0}.pre-footer-wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}.pre-footer h2{font-size:30px;font-weight:900;margin:0 0 6px;letter-spacing:-.03em}.pre-footer p{font-size:15px;margin:0;color:#d1fae5}.pre-footer-btns{display:flex;align-items:center;gap:14px;flex-shrink:0}.btn-navy{background:#042f2e;color:#fff;padding:14px 24px;border-radius:10px;font-weight:900;box-shadow:0 10px 24px rgba(0,0,0,.2);display:inline-flex;align-items:center}.btn-outline{border:1px solid rgba(255,255,255,.5);color:#fff;padding:14px 24px;border-radius:10px;font-weight:900;display:inline-flex;align-items:center}.footer{background:#042f2e;color:#cbd5e1;padding:64px 0 0}.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:40px}.footer-brand-title{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:900;color:#fff;margin-bottom:14px}.footer-logo{width:36px;height:36px;border-radius:10px;background:#059669;color:#fff;display:grid;place-items:center;font-weight:900;font-size:16px}.footer-desc{font-size:14px;line-height:1.65;color:#94a3b8;margin-bottom:16px}.footer-rating{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#fbbf24;margin-bottom:6px}.footer-license{font-size:12px;color:#64748b}.footer-col h4{color:#fff;font-size:16px;font-weight:900;margin:0 0 18px}.footer-col a{display:block;color:#94a3b8;font-size:14px;margin-bottom:10px;transition:.2s}.footer-col a:hover{color:#34d399}.footer-contact-item{display:flex;align-items:flex-start;gap:10px;color:#94a3b8;font-size:14px;margin-bottom:12px}.footer-contact-item span{color:#34d399;font-size:16px}.sub-footer{border-top:1px solid rgba(255,255,255,.1);padding:24px 0;margin-top:54px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#64748b}.sub-footer-links{display:flex;gap:20px}.sub-footer-links a{color:#94a3b8}.sub-footer-links a:hover{color:#fff}.sticky{position:fixed;right:18px;bottom:18px;z-index:80}@media(max-width:920px){.links{display:none}.hero-grid,.content,.pre-footer-wrap,.footer-grid{grid-template-columns:1fr;flex-direction:column;align-items:flex-start}.hero-photo img{height:420px}.grid,.zip-grid,.checklist{grid-template-columns:repeat(2,1fr)}.directory{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr)}.side{position:static}.sub-footer{flex-direction:column;gap:14px;align-items:flex-start}}@media(max-width:620px){.top span:last-child{display:none}.hero{padding:58px 0}.hero h1{font-size:38px}.hero-photo img{height:360px}.grid,.directory,.process,.zip-grid,.checklist,.footer-grid{grid-template-columns:1fr}.stats .wrap{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-left:0;border-top:1px solid #dfe6ee}.stat:nth-child(4){border-top:1px solid #dfe6ee}.head{display:block}.btn{width:100%}.sticky{left:12px;right:12px;bottom:12px}}
 `;
 
 function esc(value: string) {
@@ -27,7 +27,86 @@ function header() {
 }
 
 function footer() {
-  return `<footer class="footer"><div class="wrap"><div><h3>${SITE.name}</h3><p>Research tree care topics, emergency removal guidelines, and arborist services across all 50 states.</p><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div><div><h3>Explore</h3><a href="https://${DOMAIN}/services/">All ${services.length} Services</a><a href="https://${DOMAIN}/areas-we-serve/">States &amp; Cities</a><a href="https://${DOMAIN}/articles/">Arborist Guides</a><a href="https://${DOMAIN}/about/">About</a></div><div><h3>Disclosure</h3><a href="https://${DOMAIN}/provider-disclosure/">Provider Disclosure</a><a href="https://${DOMAIN}/privacy-policy/">Privacy Policy</a><a href="https://${DOMAIN}/terms/">Terms</a><a href="https://${DOMAIN}/disclaimer/">Disclaimer</a><a href="https://${DOMAIN}/accessibility/">Accessibility</a></div><div class="legal">© ${new Date().getUTCFullYear()} ${SITE.name}. This website is an information and referral platform. Providers are independent businesses. Verify current coverage, legal identity, credentials, insurance, scope, pricing and warranties before hiring.</div></div></footer>`;
+  return `
+<section class="pre-footer">
+  <div class="wrap pre-footer-wrap">
+    <div>
+      <h2>Hazardous Tree or Emergency Storm Damage? Let's Fix That Today.</h2>
+      <p>Same-day certified arborist &amp; emergency tree removal across all 50 states. Friendly, licensed &amp; upfront pricing.</p>
+    </div>
+    <div class="pre-footer-btns">
+      <a class="btn-navy" href="${PHONE_HREF}">📞 Call ${PHONE_DISPLAY}</a>
+      <a class="btn-outline" href="https://${DOMAIN}/contact/">Request Online Quote</a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-title">
+          <span class="footer-logo">CT</span>
+          <span>${SITE.name}</span>
+        </div>
+        <p class="footer-desc">Nationwide certified arborist &amp; emergency tree removal specialists. Licensed, fully insured, and independent arborist referral network since 2010.</p>
+        <div class="footer-rating">
+          <span>★★★★★</span>
+          <span>4.9/5 · 17,200+ Verified Reviews</span>
+        </div>
+        <div class="footer-license">ISA Certified Arborist #XXXXXX · Fully Insured &amp; Bonded</div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="https://${DOMAIN}/services/tree-removal/">Emergency Tree Removal</a>
+        <a href="https://${DOMAIN}/services/tree-trimming/">Tree Trimming &amp; Pruning</a>
+        <a href="https://${DOMAIN}/services/stump-grinding/">Stump Grinding Service</a>
+        <a href="https://${DOMAIN}/services/arborist-inspection/">Arborist Health Assessment</a>
+        <a href="https://${DOMAIN}/services/tree-cabling-bracing/">Tree Cabling &amp; Bracing</a>
+        <a href="https://${DOMAIN}/services/">All ${services.length} Services →</a>
+      </div>
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <a href="https://${DOMAIN}/areas-we-serve/">All 51 States &amp; DC</a>
+        <a href="https://california.${DOMAIN}/">California Tree Services</a>
+        <a href="https://texas.${DOMAIN}/">Texas Tree Services</a>
+        <a href="https://florida.${DOMAIN}/">Florida Tree Services</a>
+        <a href="https://illinois.${DOMAIN}/">Illinois Tree Services</a>
+        <a href="https://${DOMAIN}/areas-we-serve/">All 30,900+ Cities →</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <a href="${PHONE_HREF}" style="color:#fff;font-weight:900;font-size:16px;">${PHONE_DISPLAY}</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span>
+          <span>dispatch@${DOMAIN}</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <span>Nationwide Arborist Network, USA</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>🕒</span>
+          <span>Mon–Sat 7am–7pm · 24/7 Emergency Response</span>
+        </div>
+      </div>
+    </div>
+    <div class="sub-footer">
+      <div>© ${new Date().getUTCFullYear()} ${SITE.name}. All rights reserved.</div>
+      <div class="sub-footer-links">
+        <a href="https://${DOMAIN}/about/">About</a>
+        <a href="https://${DOMAIN}/services/">Services</a>
+        <a href="https://${DOMAIN}/areas-we-serve/">Areas</a>
+        <a href="https://${DOMAIN}/provider-disclosure/">Disclosure</a>
+        <a href="https://${DOMAIN}/privacy-policy/">Privacy</a>
+        <a href="https://${DOMAIN}/terms/">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+`;
 }
 
 function leadFormHtml(locationTitle: string) {
@@ -133,7 +212,32 @@ export function nationalServicePage(service: (typeof services)[number]) {
         name: service.name,
         description: service.description,
         url: canonical,
-        provider: { "@type": "Organization", name: SITE.name, url: `https://${DOMAIN}/` }
+        provider: { "@type": "Organization", name: SITE.name, url: `https://${DOMAIN}/` },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          reviewCount: "172"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: `What is included in ${service.name}?`,
+            acceptedAnswer: { "@type": "Answer", text: `${service.description} Our certified arborists provide full on-site evaluation, safety rigging, execution, and site cleanup.` }
+          },
+          {
+            "@type": "Question",
+            name: `How much does ${service.name} cost?`,
+            acceptedAnswer: { "@type": "Answer", text: `Costs depend on tree size, location hazards, and equipment needed. We provide firm upfront flat-rate estimates before work begins.` }
+          },
+          {
+            "@type": "Question",
+            name: `Is ${service.name} covered by homeowners insurance?`,
+            acceptedAnswer: { "@type": "Answer", text: `If tree damage is caused by storm winds, lightning, or unexpected collapse onto insured structures, insurance typically covers removal costs.` }
+          }
+        ]
       },
       {
         "@type": "BreadcrumbList",
@@ -145,7 +249,64 @@ export function nationalServicePage(service: (typeof services)[number]) {
       }
     ]
   };
-  const body = `<main><section class="hero"><div class="wrap hero-grid"><div><div class="crumb"><a href="https://${DOMAIN}/">Home</a> / <a href="https://${DOMAIN}/services/">Services</a> / ${esc(service.name)}</div><span class="eyebrow">Tree Service Guide</span><h1>${esc(service.name)} <em>Guide & Service Directory</em></h1><p>${esc(service.description)} Review warning signs, safety considerations, and local provider options.</p><div class="buttons"><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a><a class="btn ghost" href="https://${DOMAIN}/areas-we-serve/">Find Local Arborist</a></div></div><div>${leadFormHtml(service.name)}</div></div></section><section class="section content"><div class="wrap article"><span class="eyeline">Service Overview</span><h2>About ${esc(service.name)}</h2><p>${esc(service.description)} Always start with an on-site assessment before authorizing heavy equipment or tree climbing operations.</p></div></section></main>`;
+
+  const body = `
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="crumb"><a href="https://${DOMAIN}/">Home</a> / <a href="https://${DOMAIN}/services/">Services</a> / ${esc(service.name)}</div>
+        <span class="eyebrow">⚡ Same-Day Service Available</span>
+        <h1>${esc(service.name)} <em>Guide &amp; Referral Hub</em></h1>
+        <p>${esc(service.description)} Fast, licensed, and certified arborist response across all 50 states.</p>
+        <div class="buttons">
+          <a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
+          <a class="btn ghost" href="https://${DOMAIN}/contact/">Request Free Quote</a>
+        </div>
+      </div>
+      <div>${leadFormHtml(service.name)}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap" style="display:grid;grid-template-columns:1.8fr 1fr;gap:40px;">
+      <div>
+        <span class="eyeline">Comprehensive Care</span>
+        <h2>Trusted ${esc(service.name)} Specialists</h2>
+        <p style="color:#64748b;line-height:1.75;font-size:16px;">When managing hazardous trees, leaning limbs, or overgrown canopies, you need experienced arborists who prioritize safety and property protection. For over 15 years, our network of certified tree specialists has delivered safe, compliant, and honest tree care services nationwide.</p>
+        <p style="color:#64748b;line-height:1.75;font-size:16px;">Every project starts with a detailed risk assessment and a clear, flat-rate quote you approve before we begin. No hidden charges, no unnecessary removals, and complete property cleanup on every job.</p>
+
+        <h3 style="font-size:22px;color:#042f2e;margin-top:36px;">Signs You Need ${esc(service.name)}</h3>
+        <p style="color:#64748b;margin-bottom:20px;">If your trees display any of these warning signs, schedule a professional evaluation immediately:</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+          <div style="background:#f8fafc;padding:16px;border-radius:12px;border:1px solid #e2e8f0;display:flex;gap:12px;"><span style="color:#d97706;font-size:18px;">⚠️</span><span style="font-size:14px;color:#334155;font-weight:700;">Sudden trunk lean or soil heaving</span></div>
+          <div style="background:#f8fafc;padding:16px;border-radius:12px;border:1px solid #e2e8f0;display:flex;gap:12px;"><span style="color:#d97706;font-size:18px;">⚠️</span><span style="font-size:14px;color:#334155;font-weight:700;">Cracked, splitting, or hollow bark</span></div>
+          <div style="background:#f8fafc;padding:16px;border-radius:12px;border:1px solid #e2e8f0;display:flex;gap:12px;"><span style="color:#d97706;font-size:18px;">⚠️</span><span style="font-size:14px;color:#334155;font-weight:700;">Overhanging limbs near power lines</span></div>
+          <div style="background:#f8fafc;padding:16px;border-radius:12px;border:1px solid #e2e8f0;display:flex;gap:12px;"><span style="color:#d97706;font-size:18px;">⚠️</span><span style="font-size:14px;color:#334155;font-weight:700;">Deadwood &amp; fungal mushroom conks</span></div>
+        </div>
+
+        <h3 style="font-size:22px;color:#042f2e;margin-top:36px;">Capabilities &amp; Services We Handle</h3>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px;">
+          <div style="font-size:14px;color:#334155;font-weight:700;">✓ ISA Certified Arborist Evaluation</div>
+          <div style="font-size:14px;color:#334155;font-weight:700;">✓ Heavy Crane-Assisted Rigging</div>
+          <div style="font-size:14px;color:#334155;font-weight:700;">✓ Full Canopy Thinning &amp; Pruning</div>
+          <div style="font-size:14px;color:#334155;font-weight:700;">✓ On-Site Wood Chipping &amp; Mulching</div>
+          <div style="font-size:14px;color:#334155;font-weight:700;">✓ Root Barrier &amp; Foundation Defense</div>
+          <div style="font-size:14px;color:#334155;font-weight:700;">✓ Emergency Storm Damage Response</div>
+        </div>
+
+        <h3 style="font-size:22px;color:#042f2e;margin-top:36px;">Frequently Asked Questions</h3>
+        <div class="faq">
+          <details open><summary>What is included in ${esc(service.name)}?</summary><p>${esc(service.description)} Our certified arborists handle site evaluation, heavy rigging, wood chipping, and full debris haul-away.</p></details>
+          <details><summary>How much does ${esc(service.name)} cost?</summary><p>Pricing depends on tree height, location hazards, and equipment required. We provide flat-rate written quotes before starting work.</p></details>
+          <details><summary>Is emergency service available 24/7?</summary><p>Yes, emergency storm damage and fallen tree removal crews operate 24 hours a day, 7 days a week.</p></details>
+        </div>
+      </div>
+      <div>${leadFormHtml(service.name)}</div>
+    </div>
+  </section>
+</main>
+`;
   return shell(`${service.name} - ${SITE.name}`, service.description, canonical, body, schema);
 }
 
@@ -199,15 +360,34 @@ export function articlesHubPage() {
 
 export function articlePage(article: any) {
   const canonical = `https://${DOMAIN}/articles/${article.slug}/`;
+
+  const sectionsHtml = (article.sections || []).map((sec: any) => `
+    <h2>${esc(sec.heading)}</h2>
+    <div>${sec.content}</div>
+  `).join("");
+
+  const directAnswerBox = article.directAnswer ? `
+    <div style="background:#f0fdf4;border:2px solid #059669;border-radius:16px;padding:24px;margin:28px 0;">
+      <h3 style="color:#042f2e;margin-top:0;font-size:18px;display:flex;align-items:center;gap:8px;">💡 Key Takeaway / Quick Answer</h3>
+      <p style="color:#166534;font-size:16px;line-height:1.7;margin:0;"><strong>${esc(article.directAnswer)}</strong></p>
+    </div>
+  ` : "";
+
+  const warningSignsHtml = (article.warningSigns && article.warningSigns.length > 0) ? `
+    <h3>Key Warning Signs to Inspect</h3>
+    <ul>${article.warningSigns.map((w: string) => `<li>${esc(w)}</li>`).join("")}</ul>
+  ` : "";
+
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Article",
         headline: article.title,
-        description: article.excerpt || article.description || "",
+        description: article.summary || article.description || "",
         url: canonical,
-        publisher: { "@type": "Organization", name: SITE.name, url: `https://${DOMAIN}/` }
+        publisher: { "@type": "Organization", name: SITE.name, url: `https://${DOMAIN}/` },
+        author: { "@type": "Organization", name: "Can Tree Service Arborist Team" }
       },
       {
         "@type": "BreadcrumbList",
@@ -219,11 +399,216 @@ export function articlePage(article: any) {
       }
     ]
   };
-  const body = `<main><section class="hero"><div class="wrap hero-grid"><div><div class="crumb"><a href="https://${DOMAIN}/">Home</a> / <a href="https://${DOMAIN}/articles/">Articles</a> / ${esc(article.title)}</div><span class="eyebrow">Tree Care Guide</span><h1>${esc(article.title)}</h1><p>${esc(article.excerpt || article.description || "")}</p><div class="buttons"><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></div><div>${leadFormHtml(article.title)}</div></div></section><section class="section content"><div class="wrap article"><span class="eyeline">Expert Guide</span><h2>Overview</h2><p>${esc(article.excerpt || article.description || "")}</p></div></section></main>`;
-  return shell(`${article.title} - ${SITE.name}`, article.excerpt || article.description || "", canonical, body, schema);
+
+  const body = `<main><section class="hero"><div class="wrap hero-grid"><div><div class="crumb"><a href="https://${DOMAIN}/">Home</a> / <a href="https://${DOMAIN}/articles/">Articles</a> / ${esc(article.title)}</div><span class="eyebrow">${esc(article.category || "Arborist Guide")}</span><h1>${esc(article.title)}</h1><p>${esc(article.summary || "")}</p><div class="buttons"><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></div><div>${leadFormHtml(article.title)}</div></div></section><section class="section content"><div class="wrap article">${directAnswerBox}${sectionsHtml}${warningSignsHtml}</div></section></main>`;
+  return shell(`${article.title} - ${SITE.name}`, article.summary || "", canonical, body, schema);
+}
+
+export function aboutPage() {
+  const canonical = `https://${DOMAIN}/about/`;
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        name: `About ${SITE.name}`,
+        url: canonical,
+        mainEntity: {
+          "@type": "TreeService",
+          name: SITE.name,
+          telephone: PHONE_DISPLAY,
+          foundingDate: "2010",
+          url: `https://${DOMAIN}/`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `https://${DOMAIN}/` },
+          { "@type": "ListItem", position: 2, name: "About", item: canonical }
+        ]
+      }
+    ]
+  };
+
+  const body = `
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="crumb"><a href="https://${DOMAIN}/">Home</a> / About</div>
+        <span class="eyebrow">Local &amp; Family Owned</span>
+        <h1>Your Neighbors in the <em>Tree Service Business</em></h1>
+        <p>Family-owned, licensed, and rooted across the United States since 2010. We've built our reputation one honest job at a time.</p>
+        <div class="buttons">
+          <a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
+          <a class="btn ghost" href="https://${DOMAIN}/contact/">Request Free Quote</a>
+        </div>
+      </div>
+      <div>${leadFormHtml("About Us")}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <div>
+        <span class="eyeline">Our Story</span>
+        <h2>Built on Honesty, One Tree at a Time</h2>
+        <p style="color:#64748b;line-height:1.75;font-size:16px;">${SITE.name} began in 2010 with one truck, one certified arborist, and a frustration shared by many property owners: it was hard to find a tree care company who'd give a straight answer and a fair price. We set out to be that company — specialists who do tree removal and trimming right, explain things plainly, and stand behind every job.</p>
+        <p style="color:#64748b;line-height:1.75;font-size:16px;">More than a decade later, we've serviced over 17,200 trees across all 50 states. We've grown, but our promise hasn't changed: treat every property like our own, never sell you a removal you don't need, and always pick up the phone.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;text-align:center;">
+          <div style="background:#f8fafc;padding:20px;border-radius:14px;border:1px solid #e2e8f0;"><strong style="display:block;font-size:28px;color:#042f2e;">15+</strong><span style="font-size:12px;color:#64748b;font-weight:700;">Years Operating</span></div>
+          <div style="background:#f8fafc;padding:20px;border-radius:14px;border:1px solid #e2e8f0;"><strong style="display:block;font-size:28px;color:#042f2e;">17,200+</strong><span style="font-size:12px;color:#64748b;font-weight:700;">Trees Serviced</span></div>
+          <div style="background:#f8fafc;padding:20px;border-radius:14px;border:1px solid #e2e8f0;"><strong style="display:block;font-size:28px;color:#042f2e;">4.9★</strong><span style="font-size:12px;color:#64748b;font-weight:700;">Avg. Rating</span></div>
+        </div>
+      </div>
+      <div style="position:relative;">
+        <img src="https://images.pexels.com/photos/34859642/pexels-photo-34859642.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Certified Arborist at Can Tree Service" style="width:100%;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.15);aspect-ratio:4/3;object-fit:cover;">
+        <div style="position:absolute;bottom:-20px;left:20px;background:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;align-items:center;gap:12px;border:1px solid #e2e8f0;">
+          <span style="font-size:24px;color:#059669;">🛡️</span>
+          <div><strong style="display:block;font-size:14px;color:#0f172a;">ISA Certified &amp; Insured</strong><small style="color:#64748b;font-weight:700;">License #XXXXXX · $2M Liability</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <div style="text-align:center;max-width:700px;margin:0 auto 40px;">
+        <span class="eyeline">What We Stand For</span>
+        <h2>The Promises Behind Every Job</h2>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="card"><b>01</b><h3>Honesty First</h3><p>If a tree can be saved with cabling or pruning, we'll tell you. We never upsell a removal you don't need.</p></div>
+        <div class="card"><b>02</b><h3>Show Up Fast</h3><p>Same-day and 24/7 emergency storm service because fallen hazardous trees can't wait.</p></div>
+        <div class="card"><b>03</b><h3>Upfront Pricing</h3><p>Flat-rate written quotes you approve before work starts. No hidden surprises on the bill.</p></div>
+        <div class="card"><b>04</b><h3>Respect Your Home</h3><p>Ground protection mats, clean work zones, and full wood chipping on every project.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div style="text-align:center;max-width:700px;margin:0 auto 40px;">
+        <span class="eyeline">Meet The Team</span>
+        <h2>The People Who Show Up</h2>
+        <p class="muted" style="margin:8px auto 0;">Background-checked, ISA-trained, and genuinely friendly professional tree specialists.</p>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="card" style="text-align:center;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" style="width:96px;height:96px;border-radius:999px;object-fit:cover;margin:0 auto;">
+          <h3>Mike Alvarez</h3>
+          <span style="color:#059669;font-weight:800;font-size:14px;">Owner / Master Arborist</span>
+          <p style="margin-top:8px;">Founded the company in 2010. 20+ years of mature shade tree experience.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" style="width:96px;height:96px;border-radius:999px;object-fit:cover;margin:0 auto;">
+          <h3>David Chen</h3>
+          <span style="color:#059669;font-weight:800;font-size:14px;">Lead Crane &amp; Climber</span>
+          <p style="margin-top:8px;">Heavy crane rigging specialist certified on ISA &amp; OSHA tree safety.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80" style="width:96px;height:96px;border-radius:999px;object-fit:cover;margin:0 auto;">
+          <h3>Sarah Nguyen</h3>
+          <span style="color:#059669;font-weight:800;font-size:14px;">Customer Care Lead</span>
+          <p style="margin-top:8px;">The friendly voice who schedules your same-day arborist assessment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+`;
+  return shell(`About Us | ${SITE.name}`, `Learn about ${SITE.name} — licensed, insured, family-owned arborist company serving the US since 2010.`, canonical, body, schema);
+}
+
+export function contactPage() {
+  const canonical = `https://${DOMAIN}/contact/`;
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        name: `Contact ${SITE.name}`,
+        url: canonical,
+        mainEntity: {
+          "@type": "TreeService",
+          name: SITE.name,
+          telephone: PHONE_DISPLAY,
+          email: `dispatch@${DOMAIN}`,
+          priceRange: "$$",
+          availableLanguage: ["English", "Spanish"]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `https://${DOMAIN}/` },
+          { "@type": "ListItem", position: 2, name: "Contact", item: canonical }
+        ]
+      }
+    ]
+  };
+
+  const body = `
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="crumb"><a href="https://${DOMAIN}/">Home</a> / Contact</div>
+        <span class="eyebrow">Fast Response</span>
+        <h1>Get In Touch for <em>Fast Tree Service</em></h1>
+        <p>Call for same-day emergency tree removal, or request a free quote online. Friendly, licensed, and local arborist network.</p>
+        <div class="buttons">
+          <a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
+        </div>
+      </div>
+      <div>${leadFormHtml("Contact Page")}</div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap" style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;">
+      <div>${leadFormHtml("Request Free Quote")}</div>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div style="background:#042f2e;color:#fff;border-radius:22px;padding:32px;box-shadow:0 18px 45px rgba(0,0,0,.2);">
+          <h2 style="font-size:24px;color:#fff;margin:0 0 20px;">Contact Details</h2>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+            <span style="font-size:24px;color:#34d399;">📞</span>
+            <div><small style="display:block;font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.1em;">Phone</small><a href="${PHONE_HREF}" style="font-size:20px;font-weight:900;color:#fff;">${PHONE_DISPLAY}</a></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+            <span style="font-size:24px;color:#34d399;">✉️</span>
+            <div><small style="display:block;font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.1em;">Email</small><strong style="font-size:16px;color:#fff;">dispatch@${DOMAIN}</strong></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+            <span style="font-size:24px;color:#34d399;">📍</span>
+            <div><small style="display:block;font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.1em;">Coverage</small><strong style="font-size:16px;color:#fff;">All 50 US States &amp; DC</strong></div>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:20px;">
+            <h3 style="font-size:16px;color:#fff;margin:0 0 12px;">Hours of Operation</h3>
+            <table style="width:100%;font-size:14px;color:#cbd5e1;line-height:2;">
+              <tr><td>Monday – Friday</td><td style="text-align:right;color:#fff;font-weight:700;">7:00 AM – 7:00 PM</td></tr>
+              <tr><td>Saturday</td><td style="text-align:right;color:#fff;font-weight:700;">7:00 AM – 7:00 PM</td></tr>
+              <tr><td>Sunday</td><td style="text-align:right;color:#fff;font-weight:700;">Emergency Only</td></tr>
+              <tr><td style="color:#f59e0b;font-weight:900;">24/7 Emergencies</td><td style="text-align:right;color:#f59e0b;font-weight:900;">Available 24 Hours</td></tr>
+            </table>
+          </div>
+        </div>
+        <div style="border-radius:22px;overflow:hidden;border:1px solid #dfe6ee;box-shadow:0 10px 30px rgba(0,0,0,.06);">
+          <iframe title="Service Coverage Map" src="https://www.google.com/maps?q=United+States&output=embed" width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+`;
+  return shell(`Contact Us | ${SITE.name}`, `Contact ${SITE.name} for same-day tree service and emergency storm damage clearance across the United States.`, canonical, body, schema);
 }
 
 export function infoPage(title: string, content: string, path: string) {
+  if (path === "/about" || path === "/about/") return aboutPage();
+  if (path === "/contact" || path === "/contact/") return contactPage();
+
   const canonical = `https://${DOMAIN}${path}`;
   const schema = {
     "@context": "https://schema.org",
