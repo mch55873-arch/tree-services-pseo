@@ -16,6 +16,7 @@ const IMAGES = {
 
 const CSS = `
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:#172033;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.top{background:#063a2c;color:#dbe7f5;font-size:12px}.top .wrap,.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}.top .wrap{padding:9px 0}.top b{color:#d97706}.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-bottom:1px solid #dfe6ee;box-shadow:0 10px 32px rgba(16,24,38,.08)}.nav .wrap{padding:14px 0}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:950;color:#101826;letter-spacing:-.02em}.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#059669,#047857);color:#fff;box-shadow:0 10px 24px rgba(5,150,105,.25);font-size:20px;font-weight:900}.brand small{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#6c7a8b}.links{display:flex;gap:22px;font-size:14px;font-weight:850}.links a:hover{color:#059669}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 21px;border-radius:10px;background:#d97706;color:#fff;font-weight:900;box-shadow:0 10px 24px rgba(217,119,6,.24);transition:.2s;border:none;cursor:pointer}.btn:hover{transform:translateY(-2px);background:#b45309}.btn.dark{background:#063a2c}.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.38);box-shadow:none}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#042f2e 0%,#064e3b 58%,#059669 100%);color:#fff;padding:78px 0}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}.hero h1{font-size:clamp(40px,5.5vw,64px);line-height:1.05;letter-spacing:-.04em;margin:18px 0}.hero h1 em{font-style:normal;color:#6ee7b7}.hero p{font-size:17px;line-height:1.75;color:#d6e2ee;max-width:760px}.form-card{background:#fff;color:#0f172a;border-radius:22px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.2)}.form-card h2{font-size:22px;font-weight:900;margin:0 0 6px;color:#101826}.form-card p{font-size:13px;color:#64748b;margin:0 0 20px}.form-group{margin-bottom:14px}.form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border-radius:10px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:#f8fafc}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#059669;background:#fff;box-shadow:0 0 0 3px rgba(5,150,105,.2)}.rating-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);font-size:13px;font-weight:800;color:#fff;margin-top:16px}.stars{color:#f59e0b;letter-spacing:2px}.crumb{font-size:13px;color:#b7cad9}.crumb a{color:#a7f3d0}.eyebrow{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(5,150,105,.2);border:1px solid rgba(110,231,183,.4);color:#a7f3d0;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.stats{border-bottom:1px solid #dfe6ee;background:#fff}.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}.stat{text-align:center;padding:27px 15px;border-left:1px solid #dfe6ee}.stat:first-child{border-left:0}.stat strong{display:block;font-size:31px;color:#064e3b}.stat span{display:block;margin-top:5px;color:#778495;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.section{padding:78px 0}.soft{background:#f0fdf4}.blue{background:#ecfdf5}.dark-section{background:#042f2e;color:#fff}.head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:32px}.eyeline{display:inline-block;color:#059669;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.section h2{font-size:clamp(34px,4vw,50px);line-height:1.08;margin:8px 0 0;letter-spacing:-.038em}.muted{max-width:760px;color:#667486;line-height:1.75}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{display:block;background:#fff;border:1px solid #dfe6ee;border-radius:18px;padding:25px;box-shadow:0 8px 26px rgba(16,24,38,.06);transition:.2s}.card:hover{transform:translateY(-4px);border-color:#34d399;box-shadow:0 18px 40px rgba(16,24,38,.12)}.card b{display:grid;place-items:center;width:46px;height:46px;border-radius:13px;background:#d1fae5;color:#059669;font-size:14px}.card h3{font-size:20px;margin:17px 0 9px;color:#101826;letter-spacing:-.02em}.card p{color:#667486;line-height:1.68;margin:0;font-size:14px}.more{display:inline-block;margin-top:17px;color:#059669;font-weight:900;font-size:14px}.directory{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.directory a{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 18px;border:1px solid #dfe6ee;border-radius:13px;background:#fff;color:#344054;font-size:14px;font-weight:850;box-shadow:0 6px 18px rgba(16,24,38,.04);transition:.18s}.directory a:after{content:"→";color:#059669}.directory a:hover{transform:translateY(-2px);color:#059669;border-color:#34d399}.zip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.zip-card{background:#fff;border:1px solid #dfe6ee;border-radius:14px;padding:18px;text-align:center;box-shadow:0 6px 18px rgba(16,24,38,.04);transition:.18s}.zip-card:hover{transform:translateY(-3px);border-color:#059669;box-shadow:0 12px 30px rgba(5,150,105,.2)}.zip-card span{display:block;font-size:20px;margin-bottom:6px}.zip-card strong{display:block;font-size:16px;color:#101826}.zip-card small{display:block;font-size:12px;color:#667486;margin-top:4px;font-weight:700}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}.check-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#1e293b}.check-item span{color:#059669;font-size:16px}.content{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px}.article{font-size:17px;line-height:1.82}.article h2{font-size:30px;color:#101826;margin-top:40px;letter-spacing:-.025em}.article h3{font-size:21px;color:#101826}.article p,.article li{color:#5e6d7e}.article li{margin:8px 0}.side{position:sticky;top:105px;align-self:start;background:linear-gradient(145deg,#042f2e,#064e3b);color:#fff;border-radius:19px;padding:27px;box-shadow:0 18px 45px rgba(16,24,38,.2)}.side p{color:#d5e2ee;line-height:1.65}.side .more{display:block;color:#a7f3d0}.notice{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:19px;color:#9a3412;line-height:1.65}.process{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}.step{background:#fff;border:1px solid #dfe6ee;border-radius:16px;padding:23px}.step b{font-size:35px;color:#dce7ef}.step h3{font-size:20px;color:#101826}.step p{color:#667486;line-height:1.65}.faq{display:grid;gap:12px;margin-top:28px}.faq details{background:#fff;border:1px solid #dfe6ee;border-radius:13px;padding:18px 20px}.faq summary{cursor:pointer;font-weight:900;color:#101826}.faq p{color:#667486;line-height:1.7}.pre-footer{background:linear-gradient(135deg,#059669,#047857);color:#fff;padding:44px 0}.pre-footer-wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}.pre-footer h2{font-size:30px;font-weight:900;margin:0 0 6px;letter-spacing:-.03em}.pre-footer p{font-size:15px;margin:0;color:#d1fae5}.pre-footer-btns{display:flex;align-items:center;gap:14px;flex-shrink:0}.btn-navy{background:#042f2e;color:#fff;padding:14px 24px;border-radius:10px;font-weight:900;box-shadow:0 10px 24px rgba(0,0,0,.2);display:inline-flex;align-items:center}.btn-outline{border:1px solid rgba(255,255,255,.5);color:#fff;padding:14px 24px;border-radius:10px;font-weight:900;display:inline-flex;align-items:center}.footer{background:#042f2e;color:#cbd5e1;padding:64px 0 0}.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:40px}.footer-brand-title{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:900;color:#fff;margin-bottom:14px}.footer-logo{width:36px;height:36px;border-radius:10px;background:#059669;color:#fff;display:grid;place-items:center;font-weight:900;font-size:16px}.footer-desc{font-size:14px;line-height:1.65;color:#94a3b8;margin-bottom:16px}.footer-rating{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#fbbf24;margin-bottom:6px}.footer-license{font-size:12px;color:#64748b}.footer-col h4{color:#fff;font-size:16px;font-weight:900;margin:0 0 18px}.footer-col a{display:block;color:#94a3b8;font-size:14px;margin-bottom:10px;transition:.2s}.footer-col a:hover{color:#34d399}.footer-contact-item{display:flex;align-items:flex-start;gap:10px;color:#94a3b8;font-size:14px;margin-bottom:12px}.footer-contact-item span{color:#34d399;font-size:16px}.sub-footer{border-top:1px solid rgba(255,255,255,.1);padding:24px 0;margin-top:54px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#64748b}.sub-footer-links{display:flex;gap:20px}.sub-footer-links a{color:#94a3b8}.sub-footer-links a:hover{color:#fff}.sticky{position:fixed;right:18px;bottom:18px;z-index:80}@media(max-width:920px){.links{display:none}.hero-grid,.content,.pre-footer-wrap,.footer-grid{grid-template-columns:1fr;flex-direction:column;align-items:flex-start}.hero-photo img{height:420px}.grid,.zip-grid,.checklist{grid-template-columns:repeat(2,1fr)}.directory{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr)}.side{position:static}.sub-footer{flex-direction:column;gap:14px;align-items:flex-start}}@media(max-width:620px){.top span:last-child{display:none}.hero{padding:58px 0}.hero h1{font-size:38px}.hero-photo img{height:360px}.grid,.directory,.process,.zip-grid,.checklist,.footer-grid{grid-template-columns:1fr}.stats .wrap{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-left:0;border-top:1px solid #dfe6ee}.stat:nth-child(4){border-top:1px solid #dfe6ee}.head{display:block}.btn{width:100%}.sticky{left:12px;right:12px;bottom:12px}}
+.modal-overlay{position:fixed;inset:0;z-index:999;background:rgba(4,47,46,.78);backdrop-filter:blur(8px);display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s ease}.modal-overlay.active{opacity:1;pointer-events:auto}.modal-box{background:#fff;border-radius:24px;width:min(520px,100%);box-shadow:0 30px 70px rgba(0,0,0,.45);overflow:hidden;position:relative;transform:scale(.95);transition:transform .3s ease}.modal-overlay.active .modal-box{transform:scale(1)}.modal-header{background:linear-gradient(135deg,#042f2e,#064e3b);color:#fff;padding:28px 24px 20px;position:relative}.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:999px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;font-weight:900;cursor:pointer;display:grid;place-items:center;transition:.2s}.modal-close:hover{background:rgba(255,255,255,.3)}.modal-header h3{font-size:22px;font-weight:900;margin:0 0 6px}.modal-header p{font-size:13px;color:#a7f3d0;margin:0}.modal-body{padding:24px}.modal-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#fbbf24;margin-bottom:12px}.modal-form{display:flex;flex-direction:column;gap:12px}.modal-form input,.modal-form select,.modal-form textarea{width:100%;padding:13px 16px;border-radius:10px;border:1px solid #cbd5e1;background:#f8fafc;font-size:14px;outline:none}.modal-form input:focus,.modal-form select:focus,.modal-form textarea:focus{border-color:#059669;background:#fff;box-shadow:0 0 0 3px rgba(5,150,105,.2)}.modal-submit{background:#d97706;color:#fff;font-weight:900;font-size:16px;padding:15px;border-radius:10px;border:none;cursor:pointer;box-shadow:0 10px 24px rgba(217,119,6,.3);transition:.2s}.modal-submit:hover{background:#b45309}.modal-trust{display:flex;align-items:center;justify-content:center;gap:16px;font-size:11px;color:#64748b;margin-top:14px;font-weight:700}
 `;
 
 function esc(value: string) {
@@ -26,99 +27,106 @@ function header() {
   return `<div class="top"><div class="wrap"><span>● &nbsp; Nationwide certified arborist information and tree service provider directory</span><span><b>Independent provider network</b> &nbsp; | &nbsp; Call ${PHONE_DISPLAY}</span></div></div><header class="nav"><div class="wrap"><a class="brand" href="https://${DOMAIN}/"><span class="logo">CT</span><span>${SITE.name}<small>Tree Removal · Trimming · Stump Grinding</small></span></a><nav class="links"><a href="https://${DOMAIN}/services/">Services</a><a href="https://${DOMAIN}/areas-we-serve/">Areas We Serve</a><a href="https://${DOMAIN}/articles/">Arborist Guides</a><a href="https://${DOMAIN}/about/">About</a><a href="https://${DOMAIN}/contact/">Contact</a></nav><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></header>`;
 }
 
-function footer() {
+function popupModalHtml() {
   return `
-<section class="pre-footer">
-  <div class="wrap pre-footer-wrap">
-    <div>
-      <h2>Hazardous Tree or Emergency Storm Damage? Let's Fix That Today.</h2>
-      <p>Same-day certified arborist &amp; emergency tree removal across all 50 states. Friendly, licensed &amp; upfront pricing.</p>
+<div id="quote-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <button type="button" class="modal-close" id="close-quote-modal" aria-label="Close modal">✕</button>
+      <div class="modal-badge">★★★★★ <span>4.9/5 Rating by 17,200+ Homeowners</span></div>
+      <h3 id="modal-title">Get Instant Free Arborist Estimate</h3>
+      <p>Fast response within 15 minutes · Available 24/7 nationwide</p>
     </div>
-    <div class="pre-footer-btns">
-      <a class="btn-navy" href="${PHONE_HREF}">📞 Call ${PHONE_DISPLAY}</a>
-      <a class="btn-outline" href="https://${DOMAIN}/contact/">Request Online Quote</a>
-    </div>
-  </div>
-</section>
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-title">
-          <span class="footer-logo">CT</span>
-          <span>${SITE.name}</span>
+    <div class="modal-body">
+      <form class="modal-form" action="${PHONE_HREF}" method="GET">
+        <div>
+          <input type="text" placeholder="Your Full Name *" required>
         </div>
-        <p class="footer-desc">Nationwide certified arborist &amp; emergency tree removal specialists. Licensed, fully insured, and independent arborist referral network since 2010.</p>
-        <div class="footer-rating">
-          <span>★★★★★</span>
-          <span>4.9/5 · 17,200+ Verified Reviews</span>
+        <div>
+          <input type="tel" placeholder="Phone Number *" required>
         </div>
-        <div class="footer-license">ISA Certified Arborist #XXXXXX · Fully Insured &amp; Bonded</div>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="https://${DOMAIN}/services/tree-removal/">Emergency Tree Removal</a>
-        <a href="https://${DOMAIN}/services/tree-trimming/">Tree Trimming &amp; Pruning</a>
-        <a href="https://${DOMAIN}/services/stump-grinding/">Stump Grinding Service</a>
-        <a href="https://${DOMAIN}/services/arborist-inspection/">Arborist Health Assessment</a>
-        <a href="https://${DOMAIN}/services/tree-cabling-bracing/">Tree Cabling &amp; Bracing</a>
-        <a href="https://${DOMAIN}/services/">All ${services.length} Services →</a>
-      </div>
-      <div class="footer-col">
-        <h4>Service Areas</h4>
-        <a href="https://${DOMAIN}/areas-we-serve/">All 51 States &amp; DC</a>
-        <a href="https://california.${DOMAIN}/">California Tree Services</a>
-        <a href="https://texas.${DOMAIN}/">Texas Tree Services</a>
-        <a href="https://florida.${DOMAIN}/">Florida Tree Services</a>
-        <a href="https://illinois.${DOMAIN}/">Illinois Tree Services</a>
-        <a href="https://${DOMAIN}/areas-we-serve/">All 30,900+ Cities →</a>
-      </div>
-      <div class="footer-col">
-        <h4>Get In Touch</h4>
-        <div class="footer-contact-item">
-          <span>📞</span>
-          <a href="${PHONE_HREF}" style="color:#fff;font-weight:900;font-size:16px;">${PHONE_DISPLAY}</a>
+        <div>
+          <input type="email" placeholder="Email Address *" required>
         </div>
-        <div class="footer-contact-item">
-          <span>✉️</span>
-          <span>dispatch@${DOMAIN}</span>
+        <div>
+          <select required>
+            <option value="">Select Service Needed *</option>
+            <option>Emergency Tree Removal</option>
+            <option>Tree Trimming &amp; Pruning</option>
+            <option>Stump Grinding &amp; Removal</option>
+            <option>Arborist Hazard Assessment</option>
+            <option>Storm Damage Clearance</option>
+            <option>Land &amp; Lot Clearing</option>
+          </select>
         </div>
-        <div class="footer-contact-item">
-          <span>📍</span>
-          <span>Nationwide Arborist Network, USA</span>
+        <div>
+          <textarea rows="2" placeholder="Briefly describe your tree issue or address..."></textarea>
         </div>
-        <div class="footer-contact-item">
-          <span>🕒</span>
-          <span>Mon–Sat 7am–7pm · 24/7 Emergency Response</span>
+        <button type="submit" class="modal-submit">📞 Send Quote Request</button>
+        <div class="modal-trust">
+          <span>🔒 100% Free Quote</span>
+          <span>•</span>
+          <span>No Obligation</span>
+          <span>•</span>
+          <span>Licensed &amp; Insured</span>
         </div>
-      </div>
-    </div>
-    <div class="sub-footer">
-      <div>© ${new Date().getUTCFullYear()} ${SITE.name}. All rights reserved.</div>
-      <div class="sub-footer-links">
-        <a href="https://${DOMAIN}/about/">About</a>
-        <a href="https://${DOMAIN}/services/">Services</a>
-        <a href="https://${DOMAIN}/areas-we-serve/">Areas</a>
-        <a href="https://${DOMAIN}/provider-disclosure/">Disclosure</a>
-        <a href="https://${DOMAIN}/privacy-policy/">Privacy</a>
-        <a href="https://${DOMAIN}/terms/">Terms</a>
-      </div>
+      </form>
     </div>
   </div>
-</footer>
+</div>
+
+<script>
+  (function() {
+    function openModal() {
+      var modal = document.getElementById('quote-modal');
+      if (modal) {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+    }
+    function closeModal() {
+      var modal = document.getElementById('quote-modal');
+      if (modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var closeBtn = document.getElementById('close-quote-modal');
+      var modal = document.getElementById('quote-modal');
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) closeModal();
+        });
+      }
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      // Auto-open after 5 seconds
+      setTimeout(function() {
+        if (!sessionStorage.getItem('modalShown')) {
+          openModal();
+          sessionStorage.setItem('modalShown', 'true');
+        }
+      }, 5000);
+
+      // Trigger modal on any quote link/button click
+      document.querySelectorAll('a[href*="#quote"], a[href*="/contact/"]').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          openModal();
+        });
+      });
+    })();
+</script>
 `;
 }
 
-function leadFormHtml(locationTitle: string) {
-  return `<div class="form-card"><h2>Request Free Tree Quote</h2><p>Get best estimate for certified tree care in ${esc(locationTitle)}</p><form action="${PHONE_HREF}" method="GET"><div class="form-group"><input type="text" placeholder="Your Full Name *" required></div><div class="form-group"><input type="tel" placeholder="Phone Number *" required></div><div class="form-group"><select required><option value="">Select Service Needed *</option><option>Emergency Tree Removal</option><option>Tree Trimming &amp; Pruning</option><option>Stump Grinding &amp; Removal</option><option>Hazard Tree Inspection</option><option>Storm Damage Clearance</option><option>Land &amp; Lot Clearing</option></select></div><div class="form-group"><textarea rows="2" placeholder="Describe tree size or property details..."></textarea></div><button type="submit" class="btn" style="width:100%">Submit &amp; Call ${PHONE_DISPLAY}</button></form></div>`;
-}
-
-function trustChecklistHtml() {
-  return `<div class="checklist"><div class="check-item"><span>✔</span> Upfront &amp; Competitive Tree Estimates</div><div class="check-item"><span>✔</span> Certified Arborists &amp; Licensed Crews</div><div class="check-item"><span>✔</span> Knowledge of Local Streets &amp; Hazards</div><div class="check-item"><span>✔</span> 24/7 Emergency Storm Damage Line</div><div class="check-item"><span>✔</span> Heavy Removal &amp; Crane Operations</div><div class="check-item"><span>✔</span> 100% Property Protection Commitment</div></div>`;
-}
-
 function shell(title: string, description: string, canonical: string, body: string, schema: unknown) {
-  return `<!doctype html><html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} | ${SITE.name}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${canonical}"><meta name="robots" content="index,follow"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><style>${CSS}</style><script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script></head><body>${header()}${body}${footer()}<a class="btn sticky" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></body></html>`;
+  return `<!doctype html><html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} | ${SITE.name}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${canonical}"><meta name="robots" content="index,follow"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><style>${CSS}</style><script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script></head><body>${header()}${body}${popupModalHtml()}${footer()}<a class="btn sticky" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></body></html>`;
 }
 
 function serviceCards(host: string, local: boolean) {
