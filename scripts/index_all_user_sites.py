@@ -2,11 +2,12 @@ import subprocess
 import time
 import sys
 
-# Production Multi-Site Bulk Indexing Engine
+# Production Multi-Site Bulk Indexing Engine (All 4 Portfolio Repositories)
 DOMAINS = [
     "cantreeservice.com",
     "batyspestcontrol.com",
-    "garagedoorgazette.com"
+    "garagedoorgazette.com",
+    "villageplumbers.co.nz"
 ]
 
 def index_all_sites():
