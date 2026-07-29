@@ -4,9 +4,10 @@ import json
 import xml.etree.ElementTree as ET
 import time
 import os
+import sys
 
 # Production Bulk Auto-Indexer Engine ($0 Free Alternative to BulkIndexer.net)
-DOMAIN = "cantreeservice.com"
+DOMAIN = sys.argv[1] if len(sys.argv) > 1 else "batyspestcontrol.com"
 SITEMAP_INDEX_URL = f"https://{DOMAIN}/sitemap.xml"
 INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow"
 INDEXNOW_KEY = "3a2b1c4d5e6f7a8b9c0d1e2f3a4b5c6d" # 32-character hex key
@@ -87,8 +88,8 @@ def start_bulk_indexing():
     all_urls = list(dict.fromkeys(all_urls))
     print(f"[OK] Total Discovered URLs to Index: {len(all_urls):,}")
     
-    # 2. Chunk into IndexNow batches of 10,000 URLs max
-    BATCH_SIZE = 10000
+    # 2. Chunk into IndexNow batches of 1,000 URLs max (Bing API rate-limit recommendation)
+    BATCH_SIZE = 1000
     batches = [all_urls[i:i + BATCH_SIZE] for i in range(0, len(all_urls), BATCH_SIZE)]
     
     report = {

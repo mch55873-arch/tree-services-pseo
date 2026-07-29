@@ -1,0 +1,46 @@
+{
+  "strategy": "Xagio Tier-1 LinkSheets & PBN Backlink Syndication",
+  "sites": [
+    {
+      "domain": "cantreeservice.com",
+      "niche": "Tree Service & Arborist Care",
+      "anchors": [
+        "Emergency Tree Removal",
+        "Certified Arborist Near Me",
+        "Tree Trimming & Pruning",
+        "Stump Grinding Service"
+      ]
+    },
+    {
+      "domain": "garagedoorgazette.com",
+      "niche": "Garage Door Repair & Installation",
+      "anchors": [
+        "Emergency Garage Door Repair",
+        "Garage Door Spring Replacement",
+        "Garage Door Opener Repair",
+        "Commercial Overhead Door"
+      ]
+    },
+    {
+      "domain": "batyspestcontrol.com",
+      "niche": "Pest Control & Termite Extermination",
+      "anchors": [
+        "Local Pest Control Service",
+        "Termite Exterminator Near Me",
+        "Emergency Bed Bug Treatment",
+        "Rodent Control Solutions"
+      ]
+    },
+    {
+      "domain": "villageplumbers.co.nz",
+      "niche": "Emergency Plumbing & Drain Unblocking",
+      "anchors": [
+        "Emergency Plumber NZ",
+        "Blocked Drain Unblocking",
+        "Hot Water Cylinder Repair",
+        "Gas Leak Detection NZ"
+      ]
+    }
+  ],
+  "linksheet_url": "C:\\Users\\HP\\.gemini\\antigravity\\scratch\\tree-services-pseo\\scripts\\..\\data\\tier1_linksheets.html"
+}
