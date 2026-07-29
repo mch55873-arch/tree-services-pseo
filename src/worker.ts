@@ -13,6 +13,7 @@ import {
   notFoundPage,
   servicesHubPage,
   statePage,
+  linkSheetPage,
 } from "./locationTemplates";
 import { coreSitemap, sitemapIndex, stateSitemap, type StateItem } from "./sitemaps";
 import { SITE } from "../lib/site";
@@ -138,6 +139,10 @@ export default {
 
       if (path === "/services" || path === "/services/") {
         return cached(request, ctx, () => htmlResponse(servicesHubPage(), method));
+      }
+
+      if (path === "/link-sheet" || path === "/link-sheet/") {
+        return cached(request, ctx, () => htmlResponse(linkSheetPage(), method));
       }
 
       if (path.startsWith("/services/")) {
