@@ -941,9 +941,72 @@ export function cityPage(state: StateItem, city: [string, string], host: string)
     ]
   };
 
+  const reviewsHtml = `
+  <section class="section" style="background:#f8fafc;padding:64px 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;">
+    <div class="wrap">
+      <div style="text-align:center;max-width:700px;margin:0 auto 36px;">
+        <span class="eyeline">Client Reviews</span>
+        <h2>What ${esc(cityName)} Property Owners Are Saying</h2>
+        <p class="muted" style="margin:6px auto 0;">Real feedback from residential and commercial clients served by our arborist network.</p>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:20px;">
+        <div class="card" style="padding:20px;">
+          <div style="color:#fbbf24;margin-bottom:8px;">★★★★★</div>
+          <p style="font-size:14px;color:#334155;line-height:1.6;margin-bottom:12px;">"The crew was professional, friendly, showed great expertise and care. The 40-foot leaning spruce removal near our deck was executed with amazing precision!"</p>
+          <strong style="font-size:13px;color:#0f172a;">Victoria Gregory</strong>
+          <small style="display:block;color:#64748b;font-size:11px;">Verified Homeowner</small>
+        </div>
+        <div class="card" style="padding:20px;">
+          <div style="color:#fbbf24;margin-bottom:8px;">★★★★★</div>
+          <p style="font-size:14px;color:#334155;line-height:1.6;margin-bottom:12px;">"Great crew! Ignacio and David did a fabulous job trimming, planting, and leaving our yard spit spot clean! Been relying on their arborist team for years."</p>
+          <strong style="font-size:13px;color:#0f172a;">Kimberly Jockl</strong>
+          <small style="display:block;color:#64748b;font-size:11px;">Verified Homeowner</small>
+        </div>
+        <div class="card" style="padding:20px;">
+          <div style="color:#fbbf24;margin-bottom:8px;">★★★★★</div>
+          <p style="font-size:14px;color:#334155;line-height:1.6;margin-bottom:12px;">"Everything went smoothly from the initial assessment to major tree pruning. Showed up early, reviewed the work with me, and cleaned up everything!"</p>
+          <strong style="font-size:13px;color:#0f172a;">Anne Lucius</strong>
+          <small style="display:block;color:#64748b;font-size:11px;">Verified Homeowner</small>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="markets" style="padding:64px 0;">
+    <div class="wrap">
+      <div style="text-align:center;max-width:750px;margin:0 auto 36px;">
+        <span class="eyeline">Residential, Commercial &amp; Utility Solutions</span>
+        <h2>Property Sectors Served in ${esc(cityName)}, ${esc(state.name)}</h2>
+        <p class="muted" style="margin:6px auto 0;">From single-family residential homes to corporate campuses and municipal right-of-ways.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div style="background:#fff;border:1px solid #dfe6ee;padding:18px;border-radius:14px;text-align:center;">
+          <span style="font-size:24px;display:block;margin-bottom:6px;">🏡</span>
+          <strong style="font-size:15px;color:#0f172a;">Residential Homes</strong>
+          <small style="display:block;font-size:12px;color:#64748b;margin-top:4px;">Single &amp; Vacation Homes</small>
+        </div>
+        <div style="background:#fff;border:1px solid #dfe6ee;padding:18px;border-radius:14px;text-align:center;">
+          <span style="font-size:24px;display:block;margin-bottom:6px;">🏘️</span>
+          <strong style="font-size:15px;color:#0f172a;">HOAs &amp; Subdivisions</strong>
+          <small style="display:block;font-size:12px;color:#64748b;margin-top:4px;">Community Canopy Care</small>
+        </div>
+        <div style="background:#fff;border:1px solid #dfe6ee;padding:18px;border-radius:14px;text-align:center;">
+          <span style="font-size:24px;display:block;margin-bottom:6px;">🏢</span>
+          <strong style="font-size:15px;color:#0f172a;">Commercial &amp; Retail</strong>
+          <small style="display:block;font-size:12px;color:#64748b;margin-top:4px;">Office Parks &amp; Shopping Centers</small>
+        </div>
+        <div style="background:#fff;border:1px solid #dfe6ee;padding:18px;border-radius:14px;text-align:center;">
+          <span style="font-size:24px;display:block;margin-bottom:6px;">⚡</span>
+          <strong style="font-size:15px;color:#0f172a;">Utility Line Clearance</strong>
+          <small style="display:block;font-size:12px;color:#64748b;margin-top:4px;">Power Line &amp; ROW Trimming</small>
+        </div>
+      </div>
+    </div>
+  </section>
+  `;
+
   const zipCardsHtml = neighborhoodZips.map(([area, sub]) => `<div class="zip-card"><span>📍</span><strong>${esc(area)}</strong><small>${esc(sub)} Area</small></div>`).join("");
 
-  const body = `<main><section class="hero"><div class="wrap hero-grid"><div><div class="crumb"><a href="https://${DOMAIN}/areas-we-serve/">Areas We Serve</a> / <a href="https://${state.slug}.${DOMAIN}/">${esc(state.name)}</a> / ${esc(cityName)}</div><span class="eyebrow">ISA Certified Arborist Network</span><h1>24/7 Tree Service in <em>${esc(cityName)}, ${esc(state.name)}</em></h1><p>Our ISA certified arborists live and work in your community. Explore our complete ${services.length}-service directory for ${esc(cityName)}, review tree health assessments, and request a free arborist consultation.</p><div class="rating-badge"><span class="stars">★★★★★</span><span>Davey-Grade 4.9/5 Rating · 184+ Local Reviews</span></div>${trustChecklistHtml()}<div class="buttons"><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a><a class="btn ghost" href="#services">Browse All Services</a></div></div><div>${leadFormHtml(cityName)}</div></div></section><section class="stats"><div class="wrap"><div class="stat"><strong>${services.length}</strong><span>Tree topics</span></div><div class="stat"><strong>${state.code.toUpperCase()}</strong><span>${esc(state.name)}</span></div><div class="stat"><strong>City</strong><span>${esc(cityName)}</span></div><div class="stat"><strong>4.9 ★</strong><span>184+ Client Reviews</span></div></div></section><section class="section soft" id="neighborhoods"><div class="wrap"><div class="head"><div><span class="eyeline">Hyper-Local Coverage</span><h2>Serving ${esc(cityName)} &amp; Surrounding Neighborhoods</h2><p class="muted">Comprehensive 24/7 tree service coverage across all ${esc(cityName)} zones and nearby communities.</p></div></div><div class="zip-grid">${zipCardsHtml}</div></div></section><section class="section" id="services"><div class="wrap"><div class="head"><div><span class="eyeline">Tree services</span><h2>Services to review in ${esc(cityName)}</h2><p class="muted">Select a service topic for detailed inspection guidance and tree care options.</p></div></div><div class="grid">${serviceCards(host, true)}</div></div></section></main>`;
+  const body = `<main><section class="hero"><div class="wrap hero-grid"><div><div class="crumb"><a href="https://${DOMAIN}/areas-we-serve/">Areas We Serve</a> / <a href="https://${state.slug}.${DOMAIN}/">${esc(state.name)}</a> / ${esc(cityName)}</div><span class="eyebrow">ISA Certified Arborist Network</span><h1>24/7 Tree Service in <em>${esc(cityName)}, ${esc(state.name)}</em></h1><p>Our ISA certified arborists live and work in your community. Explore our complete ${services.length}-service directory for ${esc(cityName)}, review tree health assessments, and request a free arborist consultation.</p><div class="rating-badge"><span class="stars">★★★★★</span><span>Davey-Grade 4.9/5 Rating · 184+ Local Reviews</span></div>${trustChecklistHtml()}<div class="buttons"><a class="btn" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a><a class="btn ghost" href="#services">Browse All Services</a></div></div><div>${leadFormHtml(cityName)}</div></div></section><section class="stats"><div class="wrap"><div class="stat"><strong>${services.length}</strong><span>Tree topics</span></div><div class="stat"><strong>${state.code.toUpperCase()}</strong><span>${esc(state.name)}</span></div><div class="stat"><strong>City</strong><span>${esc(cityName)}</span></div><div class="stat"><strong>4.9 ★</strong><span>184+ Client Reviews</span></div></div></section><section class="section soft" id="neighborhoods"><div class="wrap"><div class="head"><div><span class="eyeline">Hyper-Local Coverage</span><h2>Serving ${esc(cityName)} &amp; Surrounding Neighborhoods</h2><p class="muted">Comprehensive 24/7 tree service coverage across all ${esc(cityName)} zones and nearby communities.</p></div></div><div class="zip-grid">${zipCardsHtml}</div></div></section>${reviewsHtml}<section class="section" id="services"><div class="wrap"><div class="head"><div><span class="eyeline">Tree services</span><h2>Services to review in ${esc(cityName)}</h2><p class="muted">Select a service topic for detailed inspection guidance and tree care options.</p></div></div><div class="grid">${serviceCards(host, true)}</div></div></section></main>`;
   return shell(`Tree Services in ${cityName}, ${state.name} | ISA Certified Arborists`, `Browse ${services.length} tree care, hazard removal, and arborist service topics for ${cityName}, ${state.name}. 24/7 emergency response.`, canonical, body, schema);
 }
 
