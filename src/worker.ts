@@ -97,6 +97,11 @@ export default {
     const path = url.pathname;
     const method = request.method;
 
+    if (url.protocol === "http:" && !url.hostname.includes("localhost")) {
+      url.protocol = "https:";
+      return new Response(null, { status: 301, headers: { Location: url.toString() } });
+    }
+
     if (hostname === `www.${DOMAIN}`) {
       url.hostname = DOMAIN;
       return redirect(url.toString());
