@@ -2,6 +2,7 @@ import articles from "../data/articles.json";
 import services from "../data/services.json";
 import usaLocations from "../data/usa_database.json";
 import {
+  getServicesForState,
   aboutUsPage,
   areasWeServePage,
   articlePage,
@@ -20,7 +21,8 @@ import {
   termsOfServicePage,
   type StateItem,
 } from "./locationTemplates";
-import { coreSitemap, sitemapIndex, stateSitemap } from "./sitemaps";
+import {
+  getServicesForState, coreSitemap, sitemapIndex, stateSitemap } from "./sitemaps";
 
 type Env = { ASSETS: { fetch(input: Request | string): Promise<Response> } };
 type Context = { waitUntil(promise: Promise<unknown>): void };
