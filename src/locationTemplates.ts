@@ -1,5 +1,5 @@
-import { articles } from "../data/articles";
-import { services } from "../data/services";
+import articles from "../data/articles.json";
+import services from "../data/services.json";
 
 export type StateItem = {
   code: string;
