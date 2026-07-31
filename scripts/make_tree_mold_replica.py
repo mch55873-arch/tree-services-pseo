@@ -1,4 +1,24 @@
-import { articles } from "../data/articles";
+import os
+import json
+
+print("=== STARTING CAN TREE SERVICE 1:1 MOLD REPLICA CONVERSION ===")
+
+# 1. Update lib/site.ts
+site_ts = '''export const SITE = {
+  name: "Can Tree Service & Arborist Network",
+  domain: "cantreeservice.com",
+  phoneDisplay: "+1 (380) 209-1328",
+  phoneHref: "tel:+13802091328",
+  address: "350 N High St, Columbus, OH 43215",
+  license: "ISA Certified & Insured · CSLB #994821",
+};
+'''
+with open("lib/site.ts", "w", encoding="utf-8") as f:
+  f.write(site_ts)
+print("[OK] Updated lib/site.ts")
+
+# 2. Build 1:1 locationTemplates.ts for tree-services-pseo
+templates_code = '''import { articles } from "../data/articles";
 import { services } from "../data/services";
 
 export type StateItem = {
@@ -1062,3 +1082,245 @@ export function infoPage(title: string, content: string, path: string) {
 export function notFoundPage(message: string) {
   return `<!doctype html><html><head><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1"><title>404 | ${BRAND}</title><style>${CSS}</style></head><body>${header()}<main class="sec-dark"><div class="wrap"><h1>404</h1><p>${esc(message)}</p><a class="btn-cta" href="https://${DOMAIN}/">Back to Home</a></div></main>${footer()}</body></html>`;
 }
+'''
+
+with open("src/locationTemplates.ts", "w", encoding="utf-8") as f:
+  f.write(templates_code)
+print("[OK] Created 1:1 locationTemplates.ts for tree-services-pseo")
+
+# 3. Build 1:1 worker.ts for tree-services-pseo
+worker_code = '''import { articles } from "../data/articles";
+import { services } from "../data/services";
+import usaLocations from "../data/usa_database.json";
+import {
+  aboutUsPage,
+  areasWeServePage,
+  articlePage,
+  articlesHubPage,
+  cityPage,
+  contactUsPage,
+  disclaimerPage,
+  homePage,
+  infoPage,
+  localServicePage,
+  nationalServicePage,
+  notFoundPage,
+  privacyPolicyPage,
+  servicesHubPage,
+  statePage,
+  termsOfServicePage,
+  type StateItem,
+} from "./locationTemplates";
+import { coreSitemap, sitemapIndex, stateSitemap } from "./sitemaps";
+
+type Env = { ASSETS: { fetch(input: Request | string): Promise<Response> } };
+type Context = { waitUntil(promise: Promise<unknown>): void };
+
+const DOMAIN = "cantreeservice.com";
+
+const states: StateItem[] = (usaLocations as any[]).map((s: any) => ({
+  code: s.code || "",
+  name: s.name || "",
+  slug: s.slug || (s.name || "").toLowerCase().replace(/\\s+/g, "-"),
+  cities: (s.cities || []).map((c: any) => [
+    c.slug || (c.name || "").toLowerCase().replace(/\\s+/g, "-"),
+    c.name || "",
+  ]),
+}));
+
+const STATE_BY_SLUG = new Map<string, StateItem>();
+states.forEach((st) => STATE_BY_SLUG.set(st.slug, st));
+const STATE_SLUGS = Array.from(STATE_BY_SLUG.keys());
+
+function htmlResponse(html: string, method = "GET", status = 200, extra: Record<string, string> = {}) {
+  const bytes = new TextEncoder().encode(html);
+  return new Response(method === "HEAD" ? null : bytes, {
+    status,
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "content-length": String(bytes.byteLength),
+      "cache-control": "no-cache, no-store, must-revalidate",
+      "x-content-type-options": "nosniff",
+      ...extra,
+    },
+  });
+}
+
+function notFound(message: string, method = "GET") {
+  return htmlResponse(notFoundPage(message), method, 404, { "x-robots-tag": "noindex" });
+}
+
+function redirect(url: string, status = 308) {
+  return Response.redirect(url, status);
+}
+
+async function cached(request: Request, ctx: Context, render: () => Response) {
+  if (request.method === "HEAD") return render();
+  return render();
+}
+
+export default {
+  async fetch(request: Request, env: Env, ctx: Context): Promise<Response> {
+    const method = request.method;
+    if (method !== "GET" && method !== "HEAD") {
+      return new Response("Method Not Allowed", { status: 405 });
+    }
+
+    const url = new URL(request.url);
+    const hostname = url.hostname.toLowerCase();
+    const path = url.pathname;
+
+    if (hostname === DOMAIN || hostname === `www.${DOMAIN}`) {
+      if (path === "/") {
+        return cached(request, ctx, () => htmlResponse(homePage(states), method));
+      }
+      if (path === "/sitemap.xml") {
+        return cached(request, ctx, () => htmlResponse(sitemapIndex(states), method, 200, { "content-type": "application/xml" }));
+      }
+      if (path === "/sitemaps/core.xml") {
+        return cached(request, ctx, () => htmlResponse(coreSitemap(), method, 200, { "content-type": "application/xml" }));
+      }
+      if (path.startsWith("/sitemaps/state-") && path.endsWith(".xml")) {
+        const stateSlug = path.slice("/sitemaps/state-".length, -".xml".length);
+        const state = STATE_BY_SLUG.get(stateSlug);
+        if (state) {
+          return cached(request, ctx, () => htmlResponse(stateSitemap(state), method, 200, { "content-type": "application/xml" }));
+        }
+      }
+      if (path === "/robots.txt") {
+        const txt = `User-agent: *\\nAllow: /\\n\\nSitemap: https://${DOMAIN}/sitemap.xml\\n`;
+        return htmlResponse(txt, method, 200, { "content-type": "text/plain" });
+      }
+
+      if (path === "/services" || path === "/services/") {
+        return cached(request, ctx, () => htmlResponse(servicesHubPage(), method));
+      }
+
+      if (path.startsWith("/services/")) {
+        const slug = path.split("/")[2];
+        const service = services.find((s: any) => s.slug === slug);
+        if (service) {
+          return cached(request, ctx, () => htmlResponse(nationalServicePage(service), method));
+        }
+      }
+
+      if (path === "/areas-we-serve" || path === "/areas-we-serve/" || path === "/locations" || path === "/locations/") {
+        return cached(request, ctx, () => htmlResponse(areasWeServePage(states), method));
+      }
+
+      if (path === "/articles" || path === "/articles/") {
+        return cached(request, ctx, () => htmlResponse(articlesHubPage(), method));
+      }
+
+      if (path.startsWith("/articles/")) {
+        const slug = path.split("/")[2];
+        const article = articles.find((a: any) => a.slug === slug);
+        if (article) {
+          return cached(request, ctx, () => htmlResponse(articlePage(article), method));
+        }
+      }
+
+      if (path === "/about" || path === "/about/") {
+        return cached(request, ctx, () => htmlResponse(aboutUsPage(), method));
+      }
+
+      if (path === "/contact" || path === "/contact/") {
+        return cached(request, ctx, () => htmlResponse(contactUsPage(), method));
+      }
+
+      if (path === "/privacy-policy" || path === "/privacy-policy/") {
+        return cached(request, ctx, () => htmlResponse(privacyPolicyPage(), method));
+      }
+
+      if (path === "/terms" || path === "/terms/" || path === "/terms-of-service" || path === "/terms-of-service/") {
+        return cached(request, ctx, () => htmlResponse(termsOfServicePage(), method));
+      }
+
+      if (path === "/disclaimer" || path === "/disclaimer/") {
+        return cached(request, ctx, () => htmlResponse(disclaimerPage(), method));
+      }
+
+      return env.ASSETS.fetch(request);
+    }
+
+    if (!hostname.endsWith(`.${DOMAIN}`)) return notFound("This hostname is not configured.", method);
+
+    const sub = hostname.slice(0, -(DOMAIN.length + 1));
+    const stateMatch = STATE_BY_SLUG.get(sub);
+
+    if (stateMatch) {
+      if (path === "/") {
+        return cached(request, ctx, () => htmlResponse(statePage(stateMatch), method));
+      }
+      if (path.length > 1) {
+        const slug = path.slice(1).replace(/\\/$/, "");
+        const service = services.find((s: any) => s.slug === slug);
+        if (service) {
+          return cached(request, ctx, () => htmlResponse(nationalServicePage(service), method));
+        }
+      }
+    }
+
+    const stateSlug = STATE_SLUGS.find((s) => sub.endsWith(`-${s}`));
+    if (stateSlug) {
+      const state = STATE_BY_SLUG.get(stateSlug)!;
+      const citySlug = sub.slice(0, -(stateSlug.length + 1));
+      const city = state.cities.find(([slug]) => slug === citySlug);
+      if (city) {
+        if (path === "/") {
+          return cached(request, ctx, () => htmlResponse(cityPage(state, city, hostname), method));
+        }
+        const slug = path.slice(1).replace(/\\/$/, "");
+        const service = services.find((s: any) => s.slug === slug);
+        if (service) {
+          return cached(request, ctx, () => htmlResponse(localServicePage(state, city, service, hostname), method));
+        }
+      }
+    }
+
+    return notFound("The requested local page was not found.", method);
+  },
+};
+'''
+
+with open("src/worker.ts", "w", encoding="utf-8") as f:
+  f.write(worker_code)
+print("[OK] Created 1:1 worker.ts for tree-services-pseo")
+
+# 4. Standalone wrangler.jsonc
+wrangler_jsonc = '''{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tree-services-pseo",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-07-24",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": "./out"
+  },
+  "routes": [
+    {
+      "pattern": "cantreeservice.com/*",
+      "zone_name": "cantreeservice.com"
+    },
+    {
+      "pattern": "www.cantreeservice.com/*",
+      "zone_name": "cantreeservice.com"
+    },
+    {
+      "pattern": "*.cantreeservice.com/*",
+      "zone_name": "cantreeservice.com"
+    }
+  ]
+}
+'''
+with open("wrangler.jsonc", "w", encoding="utf-8") as f:
+  f.write(wrangler_jsonc)
+print("[OK] Created wrangler.jsonc")
+
+os.makedirs("out", exist_ok=True)
+with open("out/_dummy.txt", "w", encoding="utf-8") as f:
+  f.write("cantreeservice asset dummy")
+
+print("=== CONVERSION SCRIPT COMPLETE ===")
