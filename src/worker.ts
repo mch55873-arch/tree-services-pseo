@@ -27,7 +27,8 @@ type Context = { waitUntil(promise: Promise<unknown>): void };
 
 const DOMAIN = "cantreeservice.com";
 
-const states: StateItem[] = (usaLocations as any[]).map((s: any) => ({
+const rawStates = (usaLocations as any).states || [];
+const states: StateItem[] = rawStates.map((s: any) => ({
   code: s.code || "",
   name: s.name || "",
   slug: s.slug || (s.name || "").toLowerCase().replace(/\s+/g, "-"),
