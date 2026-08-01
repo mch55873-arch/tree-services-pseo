@@ -756,6 +756,23 @@ export function homePage(states: StateItem[]) {
     ]
   };
 
+  const topMetroCities = [
+    { citySlug: "los-angeles", cityName: "Los Angeles", stateSlug: "california", stateName: "California" },
+    { citySlug: "houston", cityName: "Houston", stateSlug: "texas", stateName: "Texas" },
+    { citySlug: "chicago", cityName: "Chicago", stateSlug: "illinois", stateName: "Illinois" },
+    { citySlug: "phoenix", cityName: "Phoenix", stateSlug: "arizona", stateName: "Arizona" },
+    { citySlug: "miami", cityName: "Miami", stateSlug: "florida", stateName: "Florida" },
+    { citySlug: "philadelphia", cityName: "Philadelphia", stateSlug: "pennsylvania", stateName: "Pennsylvania" },
+    { citySlug: "dallas", cityName: "Dallas", stateSlug: "texas", stateName: "Texas" },
+    { citySlug: "atlanta", cityName: "Atlanta", stateSlug: "georgia", stateName: "Georgia" },
+    { citySlug: "seattle", cityName: "Seattle", stateSlug: "washington", stateName: "Washington" },
+    { citySlug: "denver", cityName: "Denver", stateSlug: "colorado", stateName: "Colorado" },
+    { citySlug: "san-diego", cityName: "San Diego", stateSlug: "california", stateName: "California" },
+    { citySlug: "columbus", cityName: "Columbus", stateSlug: "ohio", stateName: "Ohio" },
+  ];
+
+  const featuredCityPills = topMetroCities.map(c => `<a class="dir-card-white" href="https://${c.citySlug}-${c.stateSlug}.${DOMAIN}/"><span>🏙️ ${esc(c.cityName)}, ${esc(c.stateName)}</span></a>`).join("");
+
   const body = `<main>
   <section class="page-hero">
     <div class="wrap" style="display:grid;grid-template-columns:1fr 380px;gap:44px;align-items:start;">
@@ -804,6 +821,16 @@ export function homePage(states: StateItem[]) {
   <section class="sec-white" style="padding:70px 0;">
     <div class="wrap">
       <div style="text-align:center;margin-bottom:44px;">
+        <span class="tag-badge">FEATURED METRO AREAS</span>
+        <h2 class="sec-title" style="color:#0d1b2a;">Top US City Service Hubs</h2>
+      </div>
+      <div class="dir-grid">${featuredCityPills}</div>
+    </div>
+  </section>
+
+  <section class="sec-gray" style="padding:70px 0;">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:44px;">
         <span class="tag-badge">FROM OUR BLOG</span>
         <h2 class="sec-title" style="color:#0d1b2a;">Tree Service Guides &amp; Resources</h2>
       </div>
@@ -814,7 +841,7 @@ export function homePage(states: StateItem[]) {
     </div>
   </section>
 
-  <section class="sec-gray" style="padding:70px 0;">
+  <section class="sec-white" style="padding:70px 0;">
     <div class="wrap">
       <div style="text-align:center;margin-bottom:44px;">
         <span class="tag-badge">SERVICE AREAS</span>
