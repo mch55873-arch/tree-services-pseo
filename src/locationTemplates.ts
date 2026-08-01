@@ -301,7 +301,7 @@ function footer(): string {
         <a href="https://${DOMAIN}/services/tree-trimming/">Trimming &amp; Pruning</a>
         <a href="https://${DOMAIN}/services/stump-grinding/">Stump Grinding</a>
         <a href="https://${DOMAIN}/services/arborist-inspection/">Arborist Health Check</a>
-        <a href="https://${DOMAIN}/services/storm-clearance/">Storm Damage Clearance</a>
+        <a href="https://${DOMAIN}/services/storm-damage-cleanup/">Storm Damage Clearance</a>
         <a href="https://${DOMAIN}/services/" style="color:#38bdf8;font-weight:700;">All ${services.length} Services →</a>
       </div>
       <div>
