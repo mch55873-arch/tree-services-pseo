@@ -2,3 +2,6 @@ node_modules/
 package-lock.json
 out/
 .wrangler/
+service_account.json
+scripts/service_account.json
+scripts/keys/*.json
