@@ -27,6 +27,7 @@ type Env = { ASSETS: { fetch(input: Request | string): Promise<Response> } };
 type Context = { waitUntil(promise: Promise<unknown>): void };
 
 const DOMAIN = "cantreeservice.com";
+const INDEXNOW_KEY = "cantreeservice2026indexnowkey";
 
 const rawStates = (usaLocations as any).states || [];
 const states: StateItem[] = rawStates.map((s: any) => ({
@@ -67,16 +68,58 @@ async function cached(request: Request, ctx: Context, render: () => Response) {
   return render();
 }
 
+async function triggerIndexNow(urlList: string[]) {
+  try {
+    const payload = {
+      host: DOMAIN,
+      key: INDEXNOW_KEY,
+      keyLocation: `https://${DOMAIN}/${INDEXNOW_KEY}.txt`,
+      urlList: urlList.slice(0, 10000)
+    };
+    await fetch("https://api.indexnow.org/indexnow", {
+      method: "POST",
+      headers: { "content-type": "application/json; charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.error("IndexNow ping failed:", err);
+  }
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx: Context): Promise<Response> {
     const method = request.method;
-    if (method !== "GET" && method !== "HEAD") {
-      return new Response("Method Not Allowed", { status: 405 });
-    }
-
     const url = new URL(request.url);
     const hostname = url.hostname.toLowerCase();
     const path = url.pathname;
+
+    // Handle IndexNow key verification file
+    if (path === `/${INDEXNOW_KEY}.txt` || path === "/indexnow.txt") {
+      return new Response(INDEXNOW_KEY, {
+        headers: { "content-type": "text/plain; charset=utf-8" }
+      });
+    }
+
+    // Handle IndexNow triggering endpoint
+    if (path === "/api/indexnow") {
+      if (method === "POST") {
+        try {
+          const body: any = await request.json();
+          const urlList = body.urls || body.urlList || [];
+          if (Array.isArray(urlList) && urlList.length > 0) {
+            ctx.waitUntil(triggerIndexNow(urlList));
+            return new Response(JSON.stringify({ success: true, count: urlList.length }), {
+              headers: { "content-type": "application/json" }
+            });
+          }
+        } catch (e) {}
+      }
+      return new Response(JSON.stringify({ error: "Provide { urls: [...] }" }), { status: 400, headers: { "content-type": "application/json" } });
+    }
+
+    if (method !== "GET" && method !== "HEAD") {
+      return new Response("Method Not Allowed", { status: 405 });
+    }
 
     if (hostname === DOMAIN || hostname === `www.${DOMAIN}`) {
       if (path === "/") {
@@ -107,7 +150,7 @@ export default {
         }
       }
       if (path === "/robots.txt") {
-        const txt = `User-agent: *\nAllow: /\n\nSitemap: https://${DOMAIN}/sitemap.xml\n`;
+        const txt = `User-agent: *\nAllow: /\n\nSitemap: https://${DOMAIN}/sitemap.xml\nHost: https://${DOMAIN}\n`;
         return htmlResponse(txt, method, 200, { "content-type": "text/plain" });
       }
 
