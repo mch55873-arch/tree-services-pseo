@@ -336,7 +336,7 @@ function footer(): string {
         <a href="https://${DOMAIN}/contact/">Contact</a>
       </div>
     </div>
-  </div>;
+  </div>`;
 }
 
 function shell(title: string, description: string, canonical: string, body: string, schema?: object): string {
