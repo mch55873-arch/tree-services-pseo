@@ -21,8 +21,7 @@ import {
   termsOfServicePage,
   type StateItem,
 } from "./locationTemplates";
-import {
-  getServicesForState, coreSitemap, sitemapIndex, stateSitemap } from "./sitemaps";
+import { coreSitemap, sitemapIndex, stateSitemap } from "./sitemaps";
 
 type Env = { ASSETS: { fetch(input: Request | string): Promise<Response> } };
 type Context = { waitUntil(promise: Promise<unknown>): void };
@@ -51,8 +50,9 @@ function htmlResponse(html: string, method = "GET", status = 200, extra: Record<
     headers: {
       "content-type": "text/html; charset=utf-8",
       "content-length": String(bytes.byteLength),
-      "cache-control": "no-cache, no-store, must-revalidate",
+      "cache-control": "public, max-age=3600, s-maxage=86400",
       "x-content-type-options": "nosniff",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
       ...extra,
     },
   });
@@ -60,10 +60,6 @@ function htmlResponse(html: string, method = "GET", status = 200, extra: Record<
 
 function notFound(message: string, method = "GET") {
   return htmlResponse(notFoundPage(message), method, 404, { "x-robots-tag": "noindex" });
-}
-
-function redirect(url: string, status = 308) {
-  return Response.redirect(url, status);
 }
 
 async function cached(request: Request, ctx: Context, render: () => Response) {
@@ -87,23 +83,27 @@ export default {
         return cached(request, ctx, () => htmlResponse(homePage(states), method));
       }
       if (path === "/sitemap.xml") {
-        return cached(request, ctx, () => htmlResponse(sitemapIndex(states), method, 200, { "content-type": "application/xml" }));
+        return cached(request, ctx, () => sitemapIndex(states, method));
       }
       if (path.startsWith("/sitemaps/") && path.endsWith(".xml")) {
         const filename = path.slice("/sitemaps/".length, -".xml".length);
         if (filename === "core") {
           return cached(request, ctx, () => coreSitemap(states, method));
         }
-        const parts = filename.replace(/^state-/, "").split("-");
-        let chunk = 1;
-        if (parts.length > 1 && /^\d+$/.test(parts[parts.length - 1])) {
-          chunk = parseInt(parts.pop()!, 10);
-        }
-        const stateSlug = parts.join("-");
-        const state = STATE_BY_SLUG.get(stateSlug);
-        if (state) {
-          const sm = stateSitemap(state, chunk, method);
-          if (sm) return sm;
+        
+        // Strip optional "state-" prefix (e.g. wisconsin-1 or state-wisconsin-1)
+        const cleanName = filename.replace(/^state-/, "");
+        
+        // Match <state-slug>-<chunk> e.g. north-carolina-1 or wisconsin-1
+        const stateFileMatch = cleanName.match(/^(.+)-(\d+)$/);
+        if (stateFileMatch) {
+          const stateSlug = stateFileMatch[1];
+          const chunk = parseInt(stateFileMatch[2], 10);
+          const state = STATE_BY_SLUG.get(stateSlug);
+          if (state) {
+            const sm = stateSitemap(state, chunk, method);
+            if (sm) return sm;
+          }
         }
       }
       if (path === "/robots.txt") {
@@ -173,7 +173,8 @@ export default {
       }
       if (path.length > 1) {
         const slug = path.slice(1).replace(/\/$/, "");
-        const service = services.find((s: any) => s.slug === slug);
+        const allowed = getServicesForState(stateMatch.code);
+        const service = allowed.find((s: any) => s.slug === slug);
         if (service) {
           return cached(request, ctx, () => htmlResponse(nationalServicePage(service), method));
         }
@@ -190,7 +191,8 @@ export default {
           return cached(request, ctx, () => htmlResponse(cityPage(state, city, hostname), method));
         }
         const slug = path.slice(1).replace(/\/$/, "");
-        const service = services.find((s: any) => s.slug === slug);
+        const allowed = getServicesForState(state.code);
+        const service = allowed.find((s: any) => s.slug === slug);
         if (service) {
           return cached(request, ctx, () => htmlResponse(localServicePage(state, city, service, hostname), method));
         }
